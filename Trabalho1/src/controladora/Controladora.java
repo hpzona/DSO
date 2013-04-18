@@ -5,22 +5,25 @@ import modelo.Estoque;
 import java.util.ArrayList;
 
 import modelo.Modelo;
+import visao.Visao;
 
 public class Controladora {
 
-	Modelo persistencia;
-	ArrayList<Produto> listaProdutos = new ArrayList<Produto>();
+	Modelo modelo;
+        Visao visao;
+	ArrayList<Produto> listaProdutos = new ArrayList<>();
 	Produto produto;
 	Estoque estoque;
 	
-	public Controladora(Modelo persistencia) {
+	public Controladora(Visao visao, Modelo modelo) {
 
-		this.persistencia = persistencia;
+		this.modelo = modelo;
+                this.visao = visao;
 	}
 	
 	public void AbrirArquivo(String arquivo)
 	{
-		persistencia.AbrirArquivo(arquivo);
+		modelo.AbrirArquivo(arquivo);
 	}
 	
 	public void AdicionarProduto(String descricao, int quantidade, int valor) {
@@ -38,7 +41,7 @@ public class Controladora {
 		// }
 		
 		listaProdutos.add(produto);
-		persistencia.RegistrarEmArquivo(listaProdutos);
+		modelo.RegistrarEmArquivo(listaProdutos);
 	}
 	
 	public void VenderProduto(Produto produto, int quantidade) {
@@ -51,7 +54,7 @@ public class Controladora {
 		
 		// tem que atualizar array list ... listaProdutos.add(produto);
 		
-		persistencia.RegistrarEmArquivo(listaProdutos);
+		modelo.RegistrarEmArquivo(listaProdutos);
 		
 	}
 	

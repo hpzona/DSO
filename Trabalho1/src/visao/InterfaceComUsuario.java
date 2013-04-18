@@ -8,10 +8,13 @@ import controladora.Controladora;
 public class InterfaceComUsuario extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
-	Controladora servicosLogica;
+	Controladora controladora;
 	
+        public InterfaceComUsuario() {
+	}
+        
 	public InterfaceComUsuario(Controladora servicosLogica) {
-		this.servicosLogica = servicosLogica;
+		this.controladora = servicosLogica;
 	}
 	
 	public void interaja()
