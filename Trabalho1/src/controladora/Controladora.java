@@ -4,16 +4,16 @@ import modelo.Produto;
 import modelo.Estoque;
 import java.util.ArrayList;
 
-import modelo.ServicosPersistencia;
+import modelo.Modelo;
 
-public class ServicosLogica {
+public class Controladora {
 
-	ServicosPersistencia persistencia;
+	Modelo persistencia;
 	ArrayList<Produto> listaProdutos = new ArrayList<Produto>();
 	Produto produto;
 	Estoque estoque;
 	
-	public ServicosLogica(ServicosPersistencia persistencia) {
+	public Controladora(Modelo persistencia) {
 
 		this.persistencia = persistencia;
 	}

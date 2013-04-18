@@ -25,7 +25,7 @@ import java.awt.FlowLayout;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class FramePrincipal extends JFrame implements ListSelectionListener{
+public class Visao extends JFrame implements ListSelectionListener{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -36,7 +36,7 @@ public class FramePrincipal extends JFrame implements ListSelectionListener{
 	private JTextField textField_3;
 	private JTextField textField_4;
 	
-	public FramePrincipal() {
+	public Visao() {
 		setTitle("InfoTech - Loja de Informática");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 522, 624);

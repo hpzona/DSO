@@ -1,17 +1,17 @@
 package controladora;
-import modelo.ServicosPersistencia;
+import modelo.Modelo;
 import visao.InterfaceComUsuario;
 
 public class Principal {
 	
 	public static void main(String args[]) {
 		
-		ServicosLogica logica;
-		ServicosPersistencia persistencia;
+		Controladora logica;
+		Modelo persistencia;
 		InterfaceComUsuario jp;
 		
-		persistencia = new ServicosPersistencia();
-		logica = new ServicosLogica(persistencia);
+		persistencia = new Modelo();
+		logica = new Controladora(persistencia);
 		jp = new InterfaceComUsuario(logica);
 		
 		jp.interaja();

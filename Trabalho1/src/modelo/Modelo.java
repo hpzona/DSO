@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 
-public class ServicosPersistencia {
+public class Modelo {
 	
 	public void RegistrarEmArquivo(ArrayList<Produto> listaProdutos) {
 		
