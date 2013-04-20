@@ -1,10 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package visao;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
@@ -15,13 +12,13 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.KeyStroke;
 
-public class JanelaConfirmarCompra extends javax.swing.JDialog {
+public class JanelaConfirmarVenda extends javax.swing.JDialog {
 
     public static final int RET_CANCEL = 0;
     public static final int RET_OK = 1;
     private DefaultListModel lista;
     
-    public JanelaConfirmarCompra(java.awt.Frame parent, boolean modal, DefaultListModel lista) {
+    public JanelaConfirmarVenda(java.awt.Frame parent, boolean modal, DefaultListModel lista) {
         super(parent, modal);
         this.lista = lista;
         initComponents();
@@ -39,7 +36,7 @@ public class JanelaConfirmarCompra extends javax.swing.JDialog {
         });
     }
 
-    public JanelaConfirmarCompra(java.awt.Frame parent, boolean modal) {
+    public JanelaConfirmarVenda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         this.lista = lista;
         initComponents();
@@ -78,7 +75,7 @@ public class JanelaConfirmarCompra extends javax.swing.JDialog {
         jLabelPergunta = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListConfimaVenda = new javax.swing.JList();
-        jButtonRemoverDaListaVendas = new javax.swing.JButton();
+        jButtonRemoverDaListaDeVendas = new javax.swing.JButton();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -87,34 +84,19 @@ public class JanelaConfirmarCompra extends javax.swing.JDialog {
         });
 
         jButtonConcluirVenda.setText("Concluir");
-        jButtonConcluirVenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConcluirVendaActionPerformed(evt);
-            }
-        });
 
         jButtonCancelarVenda.setText("Cancelar");
-        jButtonCancelarVenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelarVendaActionPerformed(evt);
-            }
-        });
 
         jLabeTitulo.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabeTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabeTitulo.setText("LISTA DE VENDA:");
+        jLabeTitulo.setText("LISTA DE VENDAS:");
         jLabeTitulo.setToolTipText("");
 
         jLabelPergunta.setText("Gostaria de concluir sua venda?");
 
         jScrollPane1.setViewportView(jListConfimaVenda);
 
-        jButtonRemoverDaListaVendas.setText("Remover");
-        jButtonRemoverDaListaVendas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRemoverDaListaVendasActionPerformed(evt);
-            }
-        });
+        jButtonRemoverDaListaDeVendas.setText("Remover");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,7 +109,7 @@ public class JanelaConfirmarCompra extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonRemoverDaListaVendas)
+                                .addComponent(jButtonRemoverDaListaDeVendas)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonConcluirVenda)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -137,7 +119,7 @@ public class JanelaConfirmarCompra extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelPergunta)
                             .addComponent(jLabeTitulo))
-                        .addContainerGap(295, Short.MAX_VALUE))))
+                        .addContainerGap(278, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +134,7 @@ public class JanelaConfirmarCompra extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancelarVenda)
                     .addComponent(jButtonConcluirVenda)
-                    .addComponent(jButtonRemoverDaListaVendas))
+                    .addComponent(jButtonRemoverDaListaDeVendas))
                 .addContainerGap())
         );
 
@@ -160,29 +142,26 @@ public class JanelaConfirmarCompra extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void addBotaoConcluirVendaListener (ActionListener col) {
+	        jButtonConcluirVenda.addActionListener(col);
+    }
+    
+    public void addBotaoCancelarVendaListener (ActionListener cal) {
+	        jButtonCancelarVenda.addActionListener(cal);
+    }
+    
+    public void addBotaoRemoverDaListaDeVendasListener (ActionListener cal) {
+	        jButtonRemoverDaListaDeVendas.addActionListener(cal);
+    }
+        
     private void addLista(String nome){  
         lista.addElement(nome);
     }
-    
-    private void jButtonConcluirVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConcluirVendaActionPerformed
-        doClose(RET_OK);
-    }//GEN-LAST:event_jButtonConcluirVendaActionPerformed
-    
-    private void jButtonCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarVendaActionPerformed
-        doClose(RET_CANCEL);
-    }//GEN-LAST:event_jButtonCancelarVendaActionPerformed
-
-    /**
-     * Closes the dialog
-     */
+        
     private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
         doClose(RET_CANCEL);
     }//GEN-LAST:event_closeDialog
-
-    private void jButtonRemoverDaListaVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverDaListaVendasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonRemoverDaListaVendasActionPerformed
     
     private void doClose(int retStatus) {
         returnStatus = retStatus;
@@ -193,7 +172,7 @@ public class JanelaConfirmarCompra extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelarVenda;
     private javax.swing.JButton jButtonConcluirVenda;
-    private javax.swing.JButton jButtonRemoverDaListaVendas;
+    private javax.swing.JButton jButtonRemoverDaListaDeVendas;
     private javax.swing.JLabel jLabeTitulo;
     private javax.swing.JLabel jLabelPergunta;
     private javax.swing.JList jListConfimaVenda;

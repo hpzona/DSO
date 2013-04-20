@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package visao;
 
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 
-/**
- *
- * @author Willian
- */
 public class JanelaVenda extends javax.swing.JDialog {
 
     private DefaultListModel lista;
@@ -44,18 +36,8 @@ public class JanelaVenda extends javax.swing.JDialog {
         jButtonAdicionarAoCarrinho.setText("Adicionar ao Carrinho");
 
         jButtonFinalizarCompra.setText("Finalizar Compra");
-        jButtonFinalizarCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFinalizarCompraActionPerformed(evt);
-            }
-        });
 
         jButtonCancelarCompra.setText("Cancelar Compra");
-        jButtonCancelarCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelarCompraActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,15 +74,17 @@ public class JanelaVenda extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonCancelarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarCompraActionPerformed
-                //AVISAR
-                this.dispose();
-    }//GEN-LAST:event_jButtonCancelarCompraActionPerformed
-
-    private void jButtonFinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarCompraActionPerformed
-                //JanelaConfirmarCompra con = new JanelaConfirmarCompra(new Visao(), true, lista);
-                //con.setVisible(true);
-    }//GEN-LAST:event_jButtonFinalizarCompraActionPerformed
+    public void addBotaoAdicionarAoCarrinhoListener (ActionListener col) {
+	        jButtonAdicionarAoCarrinho.addActionListener(col);
+    }
+    
+    public void addBotaoCancelarCompraListener (ActionListener col) {
+	        jButtonCancelarCompra.addActionListener(col);
+    }
+    
+    public void addBotaoFinalizarCompraListener (ActionListener col) {
+	        jButtonFinalizarCompra.addActionListener(col);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdicionarAoCarrinho;

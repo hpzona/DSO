@@ -110,17 +110,11 @@
         <Property name="editable" type="boolean" value="false"/>
         <Property name="autoscrolls" type="boolean" value="false"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextQuantidadeAtualActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextNovaQuantidade">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextNovaQuantidadeActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelNovaQuantidade">
       <Properties>
@@ -136,9 +130,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Finalizar Controle"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFinalizarControleEstoqueActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

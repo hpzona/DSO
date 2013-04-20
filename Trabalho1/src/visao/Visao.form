@@ -50,11 +50,11 @@
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="jLabelTituloEmpresa" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="jButtonCadastrar" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="jButtonExibirJanelaCadastro" min="-2" pref="156" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButtonControlarEstoque" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="jButtonExibirJanelaEstoque" min="-2" pref="156" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButtonVender" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="jButtonExibirJanelaVenda" min="-2" pref="156" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
@@ -75,9 +75,9 @@
               <Component id="jLabelDescricao" min="-2" pref="29" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButtonVender" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
-                  <Component id="jButtonControlarEstoque" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
-                  <Component id="jButtonCadastrar" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
+                  <Component id="jButtonExibirJanelaVenda" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
+                  <Component id="jButtonExibirJanelaEstoque" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
+                  <Component id="jButtonExibirJanelaCadastro" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="77" max="32767" attributes="0"/>
           </Group>
@@ -95,7 +95,7 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonVender">
+    <Component class="javax.swing.JButton" name="jButtonExibirJanelaVenda">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri" size="14" style="0"/>
@@ -103,7 +103,7 @@
         <Property name="text" type="java.lang.String" value="Venda de Produtos"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonCadastrar">
+    <Component class="javax.swing.JButton" name="jButtonExibirJanelaCadastro">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri" size="14" style="0"/>
@@ -111,7 +111,7 @@
         <Property name="text" type="java.lang.String" value="Cadastrar Produto"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonControlarEstoque">
+    <Component class="javax.swing.JButton" name="jButtonExibirJanelaEstoque">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri" size="14" style="0"/>

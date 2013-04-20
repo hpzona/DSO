@@ -1,18 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package visao;
 
-/**
- *
- * @author Willian
- */
-public class JanelaCadastro extends javax.swing.JDialog {
+import java.awt.event.ActionListener;
 
-    /**
-     * Creates new form JanelaRegistro
-     */
+
+public class JanelaCadastro extends javax.swing.JDialog {
+    
+     
     public JanelaCadastro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -61,11 +54,6 @@ public class JanelaCadastro extends javax.swing.JDialog {
         jTextNomeProduto.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextNomeProduto.setToolTipText("Insira o nome do produto aqui");
         jTextNomeProduto.setName(""); // NOI18N
-        jTextNomeProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextNomeProdutoActionPerformed(evt);
-            }
-        });
 
         jLabelTitulo.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -76,20 +64,10 @@ public class JanelaCadastro extends javax.swing.JDialog {
         jTextQuantidade.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextQuantidade.setToolTipText("Insira a quantidade do produto aqui");
         jTextQuantidade.setName(""); // NOI18N
-        jTextQuantidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextQuantidadeActionPerformed(evt);
-            }
-        });
 
         jTextValor.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jTextValor.setToolTipText("Insira o valor do produto aqui");
         jTextValor.setName(""); // NOI18N
-        jTextValor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextValorActionPerformed(evt);
-            }
-        });
 
         jLabelValor.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jLabelValor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -132,7 +110,7 @@ public class JanelaCadastro extends javax.swing.JDialog {
                 .addContainerGap(48, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonCancelarCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(333, 333, 333))
@@ -168,17 +146,14 @@ public class JanelaCadastro extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomeProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextNomeProdutoActionPerformed
-
-    private void jTextQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextQuantidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextQuantidadeActionPerformed
-
-    private void jTextValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextValorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextValorActionPerformed
+    public void addBotaoCadastrarListener (ActionListener cal) {
+	        jButtonCadastrar.addActionListener(cal);
+    }
+    
+    public void addBotaoCancelarCadastroListener (ActionListener cal) {
+	        jButtonCancelarCadastro.addActionListener(cal);
+    }
+ 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrar;

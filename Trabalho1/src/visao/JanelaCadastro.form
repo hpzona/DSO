@@ -59,7 +59,7 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jButtonCadastrar" min="-2" pref="88" max="-2" attributes="0"/>
+              <Component id="jButtonCadastrar" min="-2" pref="99" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButtonCancelarCadastro" min="-2" pref="88" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="333" max="-2" attributes="0"/>
@@ -152,9 +152,6 @@
         <Property name="toolTipText" type="java.lang.String" value="Insira o nome do produto aqui"/>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextNomeProdutoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelTitulo">
       <Properties>
@@ -175,9 +172,6 @@
         <Property name="toolTipText" type="java.lang.String" value="Insira a quantidade do produto aqui"/>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextQuantidadeActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextValor">
       <Properties>
@@ -187,9 +181,6 @@
         <Property name="toolTipText" type="java.lang.String" value="Insira o valor do produto aqui"/>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextValorActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelValor">
       <Properties>

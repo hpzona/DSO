@@ -1,8 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package visao;
+
+import java.awt.event.ActionListener;
+
 public class JanelaEstoque extends javax.swing.JDialog {
     public JanelaEstoque(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -36,29 +35,14 @@ public class JanelaEstoque extends javax.swing.JDialog {
 
         jTextQuantidadeAtual.setEditable(false);
         jTextQuantidadeAtual.setAutoscrolls(false);
-        jTextQuantidadeAtual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextQuantidadeAtualActionPerformed(evt);
-            }
-        });
 
         jTextNovaQuantidade.setToolTipText("");
-        jTextNovaQuantidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextNovaQuantidadeActionPerformed(evt);
-            }
-        });
 
         jLabelNovaQuantidade.setText("Nova Quantidade");
 
         jLabelQuantidadeAtual.setText("Quantidade Atual");
 
         jButtonFinalizarControleEstoque.setText("Finalizar Controle");
-        jButtonFinalizarControleEstoque.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFinalizarControleEstoqueActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,19 +89,11 @@ public class JanelaEstoque extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextQuantidadeAtualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextQuantidadeAtualActionPerformed
-
-    }//GEN-LAST:event_jTextQuantidadeAtualActionPerformed
-
-    private void jTextNovaQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNovaQuantidadeActionPerformed
-
-    }//GEN-LAST:event_jTextNovaQuantidadeActionPerformed
-
-    private void jButtonFinalizarControleEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarControleEstoqueActionPerformed
-               //AVISAR
-                this.dispose();
-    }//GEN-LAST:event_jButtonFinalizarControleEstoqueActionPerformed
-
+    public void addBotaoFinalizarControleEstoqueListener (ActionListener col) {
+	        jButtonFinalizarControleEstoque.addActionListener(col);
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonFinalizarControleEstoque;
     private javax.swing.JLabel jLabelNovaQuantidade;
