@@ -1,159 +1,151 @@
 package visao;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.DefaultListModel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JList;
-import javax.swing.ListSelectionModel;
+import modelo.Modelo;
 
-import java.awt.ScrollPane;
-import javax.swing.UIManager;
-import java.awt.Color;
-import javax.swing.AbstractListModel;
-import java.awt.FlowLayout;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+public class Visao extends javax.swing.JFrame {
+    
+    Modelo modelo;
 
-public class Visao extends JFrame implements ListSelectionListener{
+    public Visao(Modelo modelo) {
+        this.modelo = modelo;
+        initComponents();
+        setLocationRelativeTo(null);
+    }
 
-	private static final long serialVersionUID = 1L;
-	
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	
-	public Visao() {
-		setTitle("InfoTech - Loja de Informática");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 522, 624);
-		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenu mnNewMenu = new JMenu("Arquivo");
-		menuBar.add(mnNewMenu);
-		
-		JMenuItem mntmSair = new JMenuItem("Sair");
-		mnNewMenu.add(mntmSair);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(65, 11, 376, 536);
-		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-		contentPane.add(tabbedPane);
-		
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("Cadastrar Produto", null, panel, null);
-		panel.setLayout(null);
-		
-		JLabel lblNomeDoProduto = new JLabel("Nome do produto:");
-		lblNomeDoProduto.setBounds(28, 17, 104, 14);
-		panel.add(lblNomeDoProduto);
-		
-		textField = new JTextField();
-		textField.setBounds(135, 14, 118, 20);
-		panel.add(textField);
-		textField.setColumns(10);
-		
-		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setBounds(135, 121, 118, 23);
-		panel.add(btnCadastrar);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(135, 45, 118, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(135, 78, 118, 20);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
-		
-		JLabel lblQuantidade = new JLabel("Quantidade:");
-		lblQuantidade.setBounds(28, 48, 97, 14);
-		panel.add(lblQuantidade);
-		
-		JLabel lblValorr = new JLabel("Valor (R$):");
-		lblValorr.setBounds(28, 81, 75, 14);
-		panel.add(lblValorr);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(UIManager.getBorder("ScrollPane.border"));
-		tabbedPane.addTab("Alterar Estoque", null, panel_1, null);
-		panel_1.setLayout(null);
-		//panel_1.add(list);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(37, 65, 300, 343);
-		panel_1.add(scrollPane);
-		
-		JList list = new JList();
-		scrollPane.setViewportView(list);
-		
-		JLabel lblSelecioneOProduto = new JLabel("Selecione o produto que deseja alterar a quantidade");
-		lblSelecioneOProduto.setBounds(37, 41, 300, 14);
-		panel_1.add(lblSelecioneOProduto);
-		
-		JButton btnAlterar = new JButton("Alterar");
-		btnAlterar.setBounds(209, 423, 128, 23);
-		panel_1.add(btnAlterar);
-		
-		JLabel lblQuantidade_1 = new JLabel("Quantidade: ");
-		lblQuantidade_1.setBounds(37, 427, 77, 14);
-		panel_1.add(lblQuantidade_1);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(113, 424, 86, 20);
-		panel_1.add(textField_3);
-		textField_3.setColumns(10);
-		
-		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("Vender Produto", null, panel_2, null);
-		panel_2.setLayout(null);
-		
-		JList list_1 = new JList();
-		JScrollPane scrollPane_1 = new JScrollPane(list_1);
-		scrollPane_1.setBounds(37, 65, 300, 343);
-		panel_2.add(scrollPane_1);
-		
-		JLabel lblSelecioneOProdute = new JLabel("Selecione o produte e especifique a quantidade");
-		lblSelecioneOProdute.setBounds(37, 40, 300, 14);
-		panel_2.add(lblSelecioneOProdute);
-		
-		JLabel lblQuantidade_2 = new JLabel("Quantidade:");
-		lblQuantidade_2.setBounds(37, 428, 77, 14);
-		panel_2.add(lblQuantidade_2);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(113, 425, 86, 20);
-		panel_2.add(textField_4);
-		
-		JButton btnVender = new JButton("Vender");
-		btnVender.setBounds(209, 424, 128, 23);
-		panel_2.add(btnVender);
-	}
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-	@Override
-	public void valueChanged(ListSelectionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 48)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("INFOTECH");
+        jLabel1.setToolTipText("");
+
+        jButton1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jButton1.setText("Venda de Produtos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jButton2.setText("Registrar Produto");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jButton3.setText("Controle de Estoque");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Loja de Informática");
+
+        jMenu1.setText("Arquivo");
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem1.setText("Sair");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(200, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(200, 200, 200))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(273, 273, 273)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(123, 123, 123)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(77, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                        JanelaVenda ven = new JanelaVenda(this, true);
+                        ven.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+                        JanelaRegistro reg = new JanelaRegistro(this, true);
+                        reg.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+                        JanelaEstoque est = new JanelaEstoque(this, true);
+                        est.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+                        this.dispose();
+                        System.exit(0);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+ 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    // End of variables declaration//GEN-END:variables
 }

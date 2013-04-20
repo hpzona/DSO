@@ -1,6 +1,5 @@
 package controladora;
 import modelo.Modelo;
-import visao.InterfaceComUsuario;
 import visao.Visao;
 
 public class Principal {
@@ -10,13 +9,11 @@ public class Principal {
 		Controladora controladora;
 		Modelo modelo;
 		Visao visao;
-                InterfaceComUsuario jp;
 		
 		modelo = new Modelo();
-                visao = new Visao();
+                visao = new Visao(modelo);
 		controladora = new Controladora(visao, modelo);
-                jp = new InterfaceComUsuario();
 				
-		jp.interaja();
-	}
+		visao.setVisible(true);
+        }
 }

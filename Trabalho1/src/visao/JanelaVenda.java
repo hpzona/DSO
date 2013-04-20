@@ -96,8 +96,8 @@ public class JanelaVenda extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-                JanelaConfirmarCompra con = new JanelaConfirmarCompra(new JanelaPrincipal(), true, lista);
-                con.setVisible(true);
+                //JanelaConfirmarCompra con = new JanelaConfirmarCompra(new Visao(), true, lista);
+                //con.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
