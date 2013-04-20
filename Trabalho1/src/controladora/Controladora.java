@@ -27,10 +27,9 @@ public class Controladora {
 
 		this.modelo = modelo;
                 this.visao = visao;
-                
-                this.visao.addCadastrarListener(new CadastrarListener());
-                this.visao.addControlarEstoqueListener(new ControlarEstoqueListener());
-                this.visao.addVenderListener(new VenderListener());
+                this.visao.addBotaoCadastrarListener(new BotaoCadastrarListener());
+                this.visao.addBotaoControlarEstoqueListener(new BotaoControlarEstoqueListener());
+                this.visao.addBotaoVenderListener(new BotaoVenderListener());
 	}
 	
 	public void AbrirArquivo(String arquivo)
@@ -75,7 +74,7 @@ public class Controladora {
             
         }
 	
-        class CadastrarListener implements ActionListener{
+        class BotaoCadastrarListener implements ActionListener{
             @Override
                 public void actionPerformed(ActionEvent e) {
                     JanelaCadastro cad = new JanelaCadastro(visao, true);
@@ -83,7 +82,7 @@ public class Controladora {
                 }
 	}
         
-        class ControlarEstoqueListener implements ActionListener{
+        class BotaoControlarEstoqueListener implements ActionListener{
             @Override
                 public void actionPerformed(ActionEvent e) {
                     JanelaEstoque est = new JanelaEstoque(visao, true);
@@ -91,7 +90,7 @@ public class Controladora {
                 }
 	}
         
-        class VenderListener implements ActionListener{
+        class BotaoVenderListener implements ActionListener{
             @Override
                 public void actionPerformed(ActionEvent e) {
                     JanelaVenda ven = new JanelaVenda(visao, true);

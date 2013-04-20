@@ -25,35 +25,35 @@ public class JanelaVenda extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jListProdutosAVenda = new javax.swing.JList();
+        jButtonAdicionarAoCarrinho = new javax.swing.JButton();
+        jButtonFinalizarCompra = new javax.swing.JButton();
+        jButtonCancelarCompra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("VENDA DE PRODUTOS:");
-        jLabel1.setToolTipText("");
+        jLabelTitulo.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelTitulo.setText("VENDA DE PRODUTOS:");
+        jLabelTitulo.setToolTipText("");
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(jListProdutosAVenda);
 
-        jButton1.setText("Adicionar ao Carrinho");
+        jButtonAdicionarAoCarrinho.setText("Adicionar ao Carrinho");
 
-        jButton2.setText("Finalizar Compra");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonFinalizarCompra.setText("Finalizar Compra");
+        jButtonFinalizarCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonFinalizarCompraActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Cancelar Compra");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCancelarCompra.setText("Cancelar Compra");
+        jButtonCancelarCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonCancelarCompraActionPerformed(evt);
             }
         });
 
@@ -65,12 +65,12 @@ public class JanelaVenda extends javax.swing.JDialog {
                 .addGap(80, 80, 80)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jButtonAdicionarAoCarrinho)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(jButtonFinalizarCompra)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3))
-                    .addComponent(jLabel1)
+                        .addComponent(jButtonCancelarCompra))
+                    .addComponent(jLabelTitulo)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
@@ -78,36 +78,36 @@ public class JanelaVenda extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(jLabel1)
+                .addComponent(jLabelTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButtonAdicionarAoCarrinho)
+                    .addComponent(jButtonFinalizarCompra)
+                    .addComponent(jButtonCancelarCompra))
                 .addGap(30, 30, 30))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonCancelarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarCompraActionPerformed
                 //AVISAR
                 this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonCancelarCompraActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonFinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarCompraActionPerformed
                 //JanelaConfirmarCompra con = new JanelaConfirmarCompra(new Visao(), true, lista);
                 //con.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonFinalizarCompraActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
+    private javax.swing.JButton jButtonAdicionarAoCarrinho;
+    private javax.swing.JButton jButtonCancelarCompra;
+    private javax.swing.JButton jButtonFinalizarCompra;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JList jListProdutosAVenda;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
