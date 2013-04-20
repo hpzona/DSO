@@ -11,7 +11,7 @@ public class Principal {
 		Visao visao;
 		
 		modelo = new Modelo();
-                visao = new Visao(modelo);
+                visao = new Visao();
 		controladora = new Controladora(visao, modelo);
 				
 		visao.setVisible(true);

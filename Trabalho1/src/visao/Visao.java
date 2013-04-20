@@ -1,13 +1,8 @@
 package visao;
 
-import modelo.Modelo;
-
 public class Visao extends javax.swing.JFrame {
     
-    Modelo modelo;
-
-    public Visao(Modelo modelo) {
-        this.modelo = modelo;
+    public Visao() {
         initComponents();
         setLocationRelativeTo(null);
     }
