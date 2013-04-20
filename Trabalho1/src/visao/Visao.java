@@ -1,5 +1,7 @@
 package visao;
 
+import java.awt.event.ActionListener;
+
 public class Visao extends javax.swing.JFrame {
     
     public Visao() {
@@ -17,13 +19,13 @@ public class Visao extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonVender = new javax.swing.JButton();
+        jButtonCadastrar = new javax.swing.JButton();
+        jButtonControlarEstoque = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuArquivo = new javax.swing.JMenu();
+        jMenuItemSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -32,46 +34,26 @@ public class Visao extends javax.swing.JFrame {
         jLabel1.setText("INFOTECH");
         jLabel1.setToolTipText("");
 
-        jButton1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jButton1.setText("Venda de Produtos");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jButtonVender.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jButtonVender.setText("Venda de Produtos");
 
-        jButton2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jButton2.setText("Registrar Produto");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jButtonCadastrar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jButtonCadastrar.setText("Cadastrar Produto");
 
-        jButton3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jButton3.setText("Controle de Estoque");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        jButtonControlarEstoque.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jButtonControlarEstoque.setText("Controle de Estoque");
 
         jLabel2.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Loja de Informática");
 
-        jMenu1.setText("Arquivo");
+        jMenuArquivo.setText("Arquivo");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem1.setText("Sair");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
+        jMenuItemSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItemSair.setText("Sair");
+        jMenuArquivo.add(jMenuItemSair);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuArquivo);
 
         setJMenuBar(jMenuBar1);
 
@@ -84,11 +66,11 @@ public class Visao extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonControlarEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonVender, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(200, 200, 200))
             .addGroup(layout.createSequentialGroup()
                 .addGap(273, 273, 273)
@@ -104,43 +86,39 @@ public class Visao extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(123, 123, 123)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonVender, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonControlarEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                        JanelaVenda ven = new JanelaVenda(this, true);
-                        ven.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-                        JanelaRegistro reg = new JanelaRegistro(this, true);
-                        reg.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-                        JanelaEstoque est = new JanelaEstoque(this, true);
-                        est.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-                        this.dispose();
-                        System.exit(0);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
- 
+    public void addCadastrarListener (ActionListener cal) {
+	        jButtonCadastrar.addActionListener(cal);
+    }
+    
+    public void addControlarEstoqueListener (ActionListener col) {
+	        jButtonControlarEstoque.addActionListener(col);
+    }
+    
+    public void addVenderListener (ActionListener vel) {
+	        jButtonVender.addActionListener(vel);
+    }
+    
+     public void addMenuItemSairListener (ActionListener mil) {
+	        jMenuItemSair.addActionListener(mil);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonCadastrar;
+    private javax.swing.JButton jButtonControlarEstoque;
+    private javax.swing.JButton jButtonVender;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenuArquivo;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemSair;
     // End of variables declaration//GEN-END:variables
 }

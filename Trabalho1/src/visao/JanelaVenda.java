@@ -4,6 +4,7 @@
  */
 package visao;
 
+import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 
 /**
@@ -19,6 +20,7 @@ public class JanelaVenda extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

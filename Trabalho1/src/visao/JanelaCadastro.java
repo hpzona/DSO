@@ -8,12 +8,12 @@ package visao;
  *
  * @author Willian
  */
-public class JanelaRegistro extends javax.swing.JDialog {
+public class JanelaCadastro extends javax.swing.JDialog {
 
     /**
      * Creates new form JanelaRegistro
      */
-    public JanelaRegistro(java.awt.Frame parent, boolean modal) {
+    public JanelaCadastro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);

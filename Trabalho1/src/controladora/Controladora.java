@@ -5,20 +5,32 @@ import modelo.Estoque;
 import java.util.ArrayList;
 
 import modelo.Modelo;
+import visao.JanelaCadastro;
+import visao.JanelaConfirmarCompra;
+import visao.JanelaVenda;
+import visao.JanelaEstoque;
 import visao.Visao;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 public class Controladora {
 
-	Modelo modelo;
-        Visao visao;
+	private Modelo modelo;
+        private Visao visao;
 	ArrayList<Produto> listaProdutos = new ArrayList<>();
-	Produto produto;
-	Estoque estoque;
+	private Produto produto;
+	private Estoque estoque;
 	
 	public Controladora(Visao visao, Modelo modelo) {
 
 		this.modelo = modelo;
                 this.visao = visao;
+                
+                this.visao.addCadastrarListener(new CadastrarListener());
+                this.visao.addControlarEstoqueListener(new ControlarEstoqueListener());
+                this.visao.addVenderListener(new VenderListener());
 	}
 	
 	public void AbrirArquivo(String arquivo)
@@ -59,7 +71,31 @@ public class Controladora {
 	}
 	
 	public void AlterarQuantidadeEmEstoque(String descricao, int quantidade) {
-		
-		
+            
+            
+        }
+	
+        class CadastrarListener implements ActionListener{
+            @Override
+                public void actionPerformed(ActionEvent e) {
+                    JanelaCadastro cad = new JanelaCadastro(visao, true);
+                        cad.setVisible(true);
+                }
+	}
+        
+        class ControlarEstoqueListener implements ActionListener{
+            @Override
+                public void actionPerformed(ActionEvent e) {
+                    JanelaEstoque est = new JanelaEstoque(visao, true);
+                        est.setVisible(true);
+                }
+	}
+        
+        class VenderListener implements ActionListener{
+            @Override
+                public void actionPerformed(ActionEvent e) {
+                    JanelaVenda ven = new JanelaVenda(visao, true);
+                        ven.setVisible(true);
+                }
 	}
 }
