@@ -153,8 +153,7 @@ public class JanelaCadastro extends javax.swing.JDialog {
     public void addBotaoCancelarCadastroListener (ActionListener cal) {
 	        jButtonCancelarCadastro.addActionListener(cal);
     }
- 
-    
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonCancelarCadastro;

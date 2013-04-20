@@ -95,12 +95,12 @@ public class Controladora {
                     janelaCadastro.setVisible(true);
                     janelaCadastro.addBotaoCadastrarListener(new BotaoCadastrarListener());
                 }
-	}
+       
+        }
         
         class BotaoCadastrarListener implements ActionListener {
-            @Override
+             @Override
              public void actionPerformed(ActionEvent e) {
-                
             }
         }
         
