@@ -212,6 +212,25 @@ public class JanelaRegistro extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(null, "Nome: " + this.getTextNome() + "\nDescrição: " + this.getTextDescricao() + "\nQuantidade: " + this.getTextQnt() + "\nValor: R$" + this.getTextValor(), "PRODUTO CADASTRADO", WIDTH);
    }
    
+   public void QuantidadeValorInvalido() {
+        JOptionPane.showMessageDialog(null, "O campo Quantidade só aceita números", "VALOR INVÁLIDO", WIDTH);
+   }
+   
+   public void PreçoValorInvalido() {
+        JOptionPane.showMessageDialog(null, "O campo Preço só aceita números", "VALOR INVÁLIDO", WIDTH);
+   }
+   
+   public void NomeDoProdutoEmBranco() {
+        JOptionPane.showMessageDialog(null, "O campo Nome é Obrigatório", "CAMPO OBRIGATÓRIO", WIDTH);
+   }
+   
+   public void QuantidadeProdutoEmBranco() {
+        JOptionPane.showMessageDialog(null, "O campo Quantidade é Obrigatório", "CAMPO OBRIGATÓRIO", WIDTH);
+   }
+   public void PreçoProdutoEmBranco() {
+        JOptionPane.showMessageDialog(null, "O campo Preço é Obrigatório", "CAMPO OBRIGATÓRIO", WIDTH);
+   }
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

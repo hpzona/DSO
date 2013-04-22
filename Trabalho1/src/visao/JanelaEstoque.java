@@ -136,6 +136,10 @@ public class JanelaEstoque extends javax.swing.JDialog{
    public int getItemSelecionado(){
        return jList1.getSelectedIndex();
    }
+   
+   public void SetarFocoNoItem(int index) {
+        jList1.setSelectedIndex(index);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -7,6 +7,9 @@ public class ListaProduto {
     
     DefaultListModel listModelProdutos = new DefaultListModel();
     
+    public ListaProduto() {
+         
+    }
     public ListaProduto(ArrayList<Produto> arrayListProdutos) {
                 
         for (int i = 0; i < arrayListProdutos.size(); i++)
@@ -15,6 +18,13 @@ public class ListaProduto {
         }
     }
  
+    /*public void AtualizarListaProduto(ArrayList<Produto> arrayListProdutos)
+    {
+        for (int i = 0; i < arrayListProdutos.size(); i++)
+        {
+            listModelProdutos.addElement(arrayListProdutos.get(i).getNome());
+        }
+    }*/
     public DefaultListModel getLista(){
         return listModelProdutos;
     }
@@ -31,8 +41,13 @@ public class ListaProduto {
         listModelProdutos.clear();
     }
     
-    public void removerItem(int index){
+    public void removerItem(ArrayList<Produto> arrayListProdutos, int index){
+        arrayListProdutos.remove(index);
         listModelProdutos.remove(index);
+    }
+    
+    public int getTamanho() {
+        return listModelProdutos.getSize();
     }
     
 }

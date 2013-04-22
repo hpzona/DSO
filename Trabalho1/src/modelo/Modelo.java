@@ -37,6 +37,7 @@ public class Modelo {
         for (int i = 0; i < arrayListProdutos.size(); i++) {
             if (arrayListProdutos.get(i).getNome().equalsIgnoreCase(nome)) {
                 arrayListProdutos.get(i).setQuantidade(qnt);
+                
                 break;
             }
         }
@@ -95,15 +96,38 @@ public class Modelo {
         
         return listaProdutos;
     }
+    
+    public void AtualizarDadosEmArquivo() throws IOException {
+        ApagarArquivo();
+        AbrirArquivo();
+        GravarArquivo();
+    }
+  
+    private void ApagarArquivo() {
+        arquivo.delete();
+        this.existeArquivo = false;
+    }
+    
+    private void CriarArquivo() throws IOException {
+        ArrayList<Produto> listaProdutos = null; 
+        
+        try {
+            this.arquivo = new File("InfoTech.txt");
+            this.arquivo.createNewFile();
+            this.existeArquivo = true;
+            listaProdutos = LerArquivo();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-    public void GravarArquivo() {
+    private void GravarArquivo() {
         RandomAccessFile raf = null;
         Long posicaoNovoProduto;
 
         try {
             raf = new RandomAccessFile(arquivo.getAbsolutePath(), "rw");
-            posicaoNovoProduto = raf.length();
-            raf.seek(posicaoNovoProduto);
+            raf.seek(0);
 
             for (int i = 0; i < this.arrayListProdutos.size(); i++) {
                 this.produto = this.arrayListProdutos.get(i);

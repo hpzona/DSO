@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import modelo.Produto;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Modelo;
 import visao.JanelaEstoque;
 import visao.JanelaRegistro;
@@ -27,6 +29,7 @@ public class Controladora {
         this.modelo = modelo;
         this.visao = visao;
         this.arrayListProdutos = modelo.AbrirArquivo();
+        this.listaProdutos = new ListaProduto();
         if (arrayListProdutos != null) {
             this.listaProdutos = new ListaProduto(arrayListProdutos);
             if (arrayListProdutos.isEmpty()) {
@@ -53,6 +56,7 @@ public class Controladora {
                 janelaEstoque.addFinControleButtonListener(new FinControleButtonListener());
                 janelaEstoque.addVerificarButtonListener(new VerificarButtonListener());
                 janelaEstoque.addModificarButtonListener(new ModificarButtonListener());
+                janelaEstoque.SetarFocoNoItem(0);
                 janelaEstoque.setVisible(true);
             }
         }
@@ -78,6 +82,8 @@ public class Controladora {
             } else {
                 janelaVenda = new JanelaVenda(visao, true, listaProdutos.getLista());
                 janelaVenda.addFecharJanelaVendaButtonListener(new FecharJanelaVendaButtonListener());
+                janelaVenda.addConfirmarVendaButtonListener(new ConfirmarVendaButtonListener());
+                janelaVenda.SetarFocoNoItem(0);
                 janelaVenda.setVisible(true);
             }
         }
@@ -87,7 +93,6 @@ public class Controladora {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            modelo.GravarArquivo();
             visao.dispose();
             System.exit(0);
         }
@@ -98,11 +103,56 @@ public class Controladora {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            modelo.adicionarProduto(janelaRegistro.getTextNome(), janelaRegistro.getTextDescricao(), Integer.parseInt(janelaRegistro.getTextQnt()), Integer.parseInt(janelaRegistro.getTextValor()));
-            janelaRegistro.showRegistro();
-            listaProdutos.addLista(janelaRegistro.getTextNome());
-            janelaRegistro.dispose();
-        }
+            
+            boolean ok = true;
+            
+            /*try {
+                if (janelaRegistro.getTextNome().isEmpty())
+                   throw new IllegalArgumentException();
+
+            } catch (IllegalArgumentException ex)   {   
+                janelaRegistro.NomeDoProdutoEmBranco();
+                ok = false;
+            }
+ 
+            try {
+                //Integer.parseInt(janelaRegistro.getTextQnt());
+                if (janelaRegistro.getTextQnt().isEmpty())
+                    throw new IllegalArgumentException();
+            } catch (NumberFormatException ex) {
+                janelaRegistro.QuantidadeValorInvalido();
+            } catch (IllegalArgumentException ex) {
+                janelaRegistro.QuantidadeProdutoEmBranco();
+                ok = false;
+            }
+            
+            try {
+                //Integer.parseInt(janelaRegistro.getTextValor());
+                if (janelaRegistro.getTextValor().isEmpty())
+                    throw new IllegalArgumentException();
+            }
+            catch (NumberFormatException ex) {
+                janelaRegistro.PreçoValorInvalido();
+                ex.getMessage();
+            } catch (IllegalArgumentException ex) {
+                janelaRegistro.PreçoProdutoEmBranco();
+                ok = false;
+            }*/
+            
+            if (ok) {
+                modelo.adicionarProduto(janelaRegistro.getTextNome(), janelaRegistro.getTextDescricao(), Integer.parseInt(janelaRegistro.getTextQnt()), Integer.parseInt(janelaRegistro.getTextValor()));
+                arrayListProdutos = modelo.getLista();
+                janelaRegistro.showRegistro();
+                listaProdutos.addLista(janelaRegistro.getTextNome());
+                // AtualizarListaProduto
+                try {
+                    modelo.AtualizarDadosEmArquivo();
+                    janelaRegistro.dispose();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+             }
+         }
     }
 
     private class CancelarRegistroButtonListener implements ActionListener {
@@ -142,6 +192,11 @@ public class Controladora {
             String nome = listaProdutos.getNome(index);
             int qntNova = janelaEstoque.getQntNova();
             modelo.setQntProduto(nome, qntNova);
+            try {
+                modelo.AtualizarDadosEmArquivo();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -150,8 +205,25 @@ public class Controladora {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            int tamanho;
             int index = janelaVenda.getItemSelecionado();
-            String nome = listaProdutos.getNome(index);
+            if (index >= 0) {
+                listaProdutos.removerItem(arrayListProdutos, index);
+                if (index ==0) {
+                    tamanho = listaProdutos.getTamanho();
+                    janelaVenda.SetarFocoNoItem(--tamanho);
+                }
+                else
+                    janelaVenda.SetarFocoNoItem(--index);
+                try {
+                    modelo.AtualizarDadosEmArquivo();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            else
+                janelaVenda.AlertaLojaSemProdutos();
+                
         }
     }
 

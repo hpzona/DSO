@@ -6,6 +6,7 @@ package visao;
 
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -82,10 +83,19 @@ public class JanelaVenda extends javax.swing.JDialog {
     public void addConfirmarVendaButtonListener(ActionListener lis) {
         jButton2.addActionListener(lis);
     }
-
+  
     public int getItemSelecionado() {
         return jList1.getSelectedIndex();
     }
+    
+    public void SetarFocoNoItem(int index) {
+        jList1.setSelectedIndex(index);
+    }
+    
+    public void AlertaLojaSemProdutos() {
+       JOptionPane.showMessageDialog(null, "A loja não possui nenhum produto cadastrado", "Sem produtos", WIDTH);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
