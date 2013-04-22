@@ -10,19 +10,19 @@ import visao.JanelaEstoque;
 import visao.JanelaCadastro;
 import visao.JanelaVenda;
 import modelo.ListaProduto;
-import visao.Visao;
+import visao.JanelaPrincipal;
 
 public class Controladora {
 
    Modelo modelo;
-   Visao visao;
+   JanelaPrincipal visao;
    JanelaVenda janelaVenda;
    JanelaEstoque janelaEstoque;
    JanelaCadastro janelaCadastro;
    ListaProduto listaProdutos;
    ArrayList<Produto> arrayListProdutos, carrinho;
 
-   public Controladora(Visao visao, Modelo modelo) throws IOException {
+   public Controladora(JanelaPrincipal visao, Modelo modelo) throws IOException {
 
       this.modelo = modelo;
       this.visao = visao;

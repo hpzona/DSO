@@ -2,18 +2,18 @@ package controladora;
 
 import java.io.IOException;
 import modelo.Modelo;
-import visao.Visao;
+import visao.JanelaPrincipal;
 
 public class Principal {
 
    public static void main(String args[]) throws IOException {
       
       Modelo modelo;
-      Visao visao;
+      JanelaPrincipal visao;
       Controladora controladora;
 
       modelo = new Modelo();
-      visao = new Visao();
+      visao = new JanelaPrincipal();
       controladora = new Controladora(visao, modelo);
 
       visao.setVisible(true);

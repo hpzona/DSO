@@ -3,9 +3,9 @@ package visao;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
-public class Visao extends javax.swing.JFrame {
+public class JanelaPrincipal extends javax.swing.JFrame {
 
-   public Visao() {
+   public JanelaPrincipal() {
       initComponents();
       setLocationRelativeTo(null);
    }

@@ -3,14 +3,14 @@ package modelo;
 public class Produto implements java.io.Serializable {
 
    private static final long serialVersionUID = 1L;
-   protected int quantidade, valor;
+   protected int quantidade, preco;
    protected String descricao, nome;
 
-   public Produto(String nome, String descricao, int quantidade, int valor) {
+   public Produto(String nome, String descricao, int quantidade, int preco) {
       this.nome = nome;
       this.descricao = descricao;
       this.quantidade = quantidade;
-      this.valor = valor;
+      this.preco = preco;
    }
 
    public String getNome() {
@@ -37,11 +37,11 @@ public class Produto implements java.io.Serializable {
       this.quantidade = quantidade;
    }
 
-   public int getValor() {
-      return this.valor;
+   public int getPreco() {
+      return this.preco;
    }
 
-   public void setValor(int valor) {
-      this.valor = valor;
+   public void setPreco(int preco) {
+      this.preco = preco;
    }
 }

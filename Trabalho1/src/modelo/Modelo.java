@@ -32,7 +32,7 @@ public class Modelo {
       }
       return qnt;
    }
-
+   
    public void setQuantidadeProduto(String nome, int qnt) {
       for (int i = 0; i < arrayListProdutos.size(); i++) {
          if (arrayListProdutos.get(i).getNome().equalsIgnoreCase(nome)) {
@@ -115,7 +115,7 @@ public class Modelo {
             raf.writeUTF(this.produto.getNome());
             raf.writeUTF(this.produto.getDescricao());
             raf.writeInt(this.produto.getQuantidade());
-            raf.writeInt(this.produto.getValor());
+            raf.writeInt(this.produto.getPreco());
          }
       } catch (IOException io) {
          io.printStackTrace();
