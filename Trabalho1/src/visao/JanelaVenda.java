@@ -1,8 +1,10 @@
 package visao;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import modelo.Produto;
 
 public class JanelaVenda extends javax.swing.JDialog {
 
@@ -35,7 +37,7 @@ public class JanelaVenda extends javax.swing.JDialog {
 
         jButtonVenderProduto.setText("Vender");
 
-        jButtonFecharJanelaVenda.setText("Fechar");
+        jButtonFecharJanelaVenda.setText("Finalizar Compra");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,7 +72,7 @@ public class JanelaVenda extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   public void addFecharJanelaVendaButtonListener(ActionListener lis) {
+   public void addTerminarVendaButtonListener(ActionListener lis) {
       jButtonFecharJanelaVenda.addActionListener(lis);
    }
 
@@ -82,12 +84,24 @@ public class JanelaVenda extends javax.swing.JDialog {
       return jList1.getSelectedIndex();
    }
 
-   public void SetarFocoNoItem(int index) {
+   public void setarFocoNoItem(int index) {
       jList1.setSelectedIndex(index);
    }
 
-   public void AlertaLojaSemProdutos() {
+   public void alertaLojaSemProdutos() {
       JOptionPane.showMessageDialog(null, "A loja não possui nenhum produto cadastrado", "Sem produtos", WIDTH);
+   }
+   
+   public void showVenda( ArrayList<Produto> carrinho){
+       if (carrinho.size() > 0){
+            String venda = "Produtos Vendidos\n\n";
+            double total = 0;
+            for (int i = 0; i < carrinho.size(); i++){
+                venda += carrinho.get(i).getNome() + " (R$ " + carrinho.get(i).getValor() + ")\n";
+                total += carrinho.get(i).getValor();
+            }
+            JOptionPane.showMessageDialog(rootPane, venda + "\n\nTotal da Venda: R$ " + total, "Finalizando Compra", WIDTH);
+       }
    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonFecharJanelaVenda;

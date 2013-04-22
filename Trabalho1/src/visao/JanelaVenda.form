@@ -94,7 +94,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonFecharJanelaVenda">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fechar"/>
+        <Property name="text" type="java.lang.String" value="Finalizar Compra"/>
       </Properties>
     </Component>
   </SubComponents>

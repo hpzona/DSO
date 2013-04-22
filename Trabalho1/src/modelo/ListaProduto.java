@@ -34,9 +34,23 @@ public class ListaProduto {
         listModelProdutos.clear();
     }
     
+    public boolean possuiProduto(String nome){
+        boolean possui = false;
+        for (int i = 0; i < listModelProdutos.size(); i++){
+            if ((listModelProdutos.getElementAt(i).toString()).equalsIgnoreCase(nome)){
+                possui = true;
+            }
+        }
+        return possui;
+    }
+    
     public void removerItem(ArrayList<Produto> arrayListProdutos, int index){
-        arrayListProdutos.remove(index);
-        listModelProdutos.remove(index);
+        Produto vendido = arrayListProdutos.get(index);
+        vendido.setQuantidade(vendido.getQuantidade() - 1);
+        if (vendido.getQuantidade() <= 0){
+           arrayListProdutos.remove(index);
+           listModelProdutos.remove(index);
+        }
     }
     
     public int getTamanho() {

@@ -19,14 +19,15 @@ public class Controladora {
    JanelaVenda janelaVenda;
    JanelaEstoque janelaEstoque;
    JanelaCadastro janelaCadastro;
-   ListaProduto listaProdutos, listaCarrinho;
-   ArrayList<Produto> arrayListProdutos;
+   ListaProduto listaProdutos;
+   ArrayList<Produto> arrayListProdutos, carrinho;
 
    public Controladora(Visao visao, Modelo modelo) throws IOException {
 
       this.modelo = modelo;
       this.visao = visao;
       this.arrayListProdutos = modelo.AbrirArquivo();
+      this.carrinho = new ArrayList();
       this.listaProdutos = new ListaProduto();
       if (arrayListProdutos != null) {
          this.listaProdutos = new ListaProduto(arrayListProdutos);
@@ -79,9 +80,9 @@ public class Controladora {
             visao.AlertaLojaSemProdutos();
          } else {
             janelaVenda = new JanelaVenda(visao, true, listaProdutos.getLista());
-            janelaVenda.addFecharJanelaVendaButtonListener(new FecharJanelaVendaButtonListener());
+            janelaVenda.addTerminarVendaButtonListener(new TerminarVendaButtonListener());
             janelaVenda.addConfirmarVendaButtonListener(new ConfirmarVendaButtonListener());
-            janelaVenda.SetarFocoNoItem(0);
+            janelaVenda.setarFocoNoItem(0);
             janelaVenda.setVisible(true);
          }
       }
@@ -105,7 +106,7 @@ public class Controladora {
          boolean ok = true;
 
          try {
-            if (janelaCadastro.getTextNome().isEmpty()) {
+            if (janelaCadastro.getTextNome().isEmpty() || listaProdutos.possuiProduto(janelaCadastro.getTextNome())) {
                throw new IllegalArgumentException();
             }
 
@@ -211,6 +212,9 @@ public class Controladora {
          if (ok) {
             int qntNova = janelaEstoque.getQuantidadeNovaEstoque();
             modelo.setQuantidadeProduto(nome, qntNova);
+            if (qntNova <= 0){
+                listaProdutos.removerItem(arrayListProdutos, index);
+            }
             try {
                modelo.AtualizarDadosEmArquivo();
             } catch (IOException io) {
@@ -222,18 +226,21 @@ public class Controladora {
 
 //////////////////////////// Aqui encontra-se todas as InnerClass com os ActionListener da classe JanelaVenda
    private class ConfirmarVendaButtonListener implements ActionListener {
-
+   
       @Override
       public void actionPerformed(ActionEvent e) {
          int tamanho;
+         Produto produto;
          int index = janelaVenda.getItemSelecionado();
          if (index >= 0) {
+            produto = arrayListProdutos.get(index);
+            carrinho.add(produto);
             listaProdutos.removerItem(arrayListProdutos, index);
             if (index == 0) {
                tamanho = listaProdutos.getTamanho();
-               janelaVenda.SetarFocoNoItem(--tamanho);
+               janelaVenda.setarFocoNoItem(--tamanho);
             } else {
-               janelaVenda.SetarFocoNoItem(--index);
+               janelaVenda.setarFocoNoItem(--index);
             }
             try {
                modelo.AtualizarDadosEmArquivo();
@@ -241,16 +248,18 @@ public class Controladora {
                io.printStackTrace();
             }
          } else {
-            janelaVenda.AlertaLojaSemProdutos();
+            janelaVenda.alertaLojaSemProdutos();
          }
 
       }
    }
 
-   private class FecharJanelaVendaButtonListener implements ActionListener {
+   private class TerminarVendaButtonListener implements ActionListener {
 
       @Override
       public void actionPerformed(ActionEvent e) {
+         janelaVenda.showVenda(carrinho);
+         carrinho.clear();
          janelaVenda.dispose();
       }
    }
