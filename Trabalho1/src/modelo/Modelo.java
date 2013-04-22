@@ -12,10 +12,10 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
 public class Modelo {
-
-    ArrayList<Produto> arrayListProdutos = new ArrayList<>();
+    
     Produto produto;
-    Estoque estoque;
+    //Estoque estoque;
+    ArrayList<Produto> arrayListProdutos = new ArrayList<>();
     ArrayList<Produto> arrayListCarrinho = new ArrayList<>();
     File arquivo;
     boolean existeArquivo;
@@ -186,6 +186,7 @@ public class Modelo {
                     valor = raf.readInt();
                     this.produto = new Produto(nomeDoProduto, descricaoDoProduto, quantidade, valor);
                     this.arrayListProdutos.add(this.produto);
+                    
 
                 } catch (EOFException e) {
                     finalDeArquivo = true;

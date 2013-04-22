@@ -11,7 +11,7 @@ public class ListaProduto {
                 
         for (int i = 0; i < arrayListProdutos.size(); i++)
         {
-            listModelProdutos.addElement(arrayListProdutos.get(i));
+            listModelProdutos.addElement(arrayListProdutos.get(i).getNome());
         }
     }
  

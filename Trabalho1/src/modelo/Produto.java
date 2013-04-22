@@ -15,7 +15,7 @@ public class Produto implements java.io.Serializable {
 	}
         
         public String getNome(){
-            return nome;
+            return this.nome;
         }
         
         public void setNome(String nome){
@@ -23,7 +23,7 @@ public class Produto implements java.io.Serializable {
         }
 	
 	public String getDescricao() {
-		return descricao;
+		return this.descricao;
 	}
 
 	public void setDescricao(String descricao) {
@@ -31,7 +31,7 @@ public class Produto implements java.io.Serializable {
 	}
 	
 	public int getQuantidade() {
-		return quantidade;
+		return this.quantidade;
 	}
 
 	public void setQuantidade(int quantidade) {
@@ -39,7 +39,7 @@ public class Produto implements java.io.Serializable {
 	}
 
 	public int getValor() {
-		return valor;
+		return this.valor;
 	}
 
 	public void setValor(int valor) {

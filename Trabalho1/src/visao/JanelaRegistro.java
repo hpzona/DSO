@@ -210,7 +210,7 @@ public class JanelaRegistro extends javax.swing.JDialog {
    
    public void showRegistro() {
         JOptionPane.showMessageDialog(null, "Nome: " + this.getTextNome() + "\nDescrição: " + this.getTextDescricao() + "\nQuantidade: " + this.getTextQnt() + "\nValor: R$" + this.getTextValor(), "PRODUTO CADASTRADO", WIDTH);
-    }
+   }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;

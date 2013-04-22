@@ -1,6 +1,7 @@
 package visao;
 
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 public class Visao extends javax.swing.JFrame {
     
@@ -119,6 +120,10 @@ public class Visao extends javax.swing.JFrame {
    
    public void addSairMenuItem(ActionListener lis){
         jMenuItem1.addActionListener(lis);
+   }
+   
+   public void AlertaLojaSemProdutos() {
+       JOptionPane.showMessageDialog(null, "A loja não possui nenhum produto cadastrado", "Sem produtos", WIDTH);
    }
       
     // Variables declaration - do not modify//GEN-BEGIN:variables
