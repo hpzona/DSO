@@ -5,13 +5,22 @@ public class Produto implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	protected int quantidade, valor;
-	protected String descricao;
+	protected String descricao, nome;
 	
-	public Produto(String descricao, int quantidade, int valor) {
-		this.descricao = descricao;
+	public Produto(String nome, String descricao, int quantidade, int valor) {
+		this.nome = nome;
+                this.descricao = descricao;
 		this.quantidade = quantidade;
 		this.valor = valor;
 	}
+        
+        public String getNome(){
+            return nome;
+        }
+        
+        public void setNome(String nome){
+            this.nome = nome;
+        }
 	
 	public String getDescricao() {
 		return descricao;

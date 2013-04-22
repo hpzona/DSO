@@ -1,187 +1,201 @@
 package controladora;
 
-import modelo.Produto;
-import modelo.Estoque;
-import java.util.ArrayList;
-
-import modelo.Modelo;
-import visao.Visao;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import visao.JanelaCadastro;
-import visao.JanelaConfirmarVenda;
-import visao.JanelaEstoque;
-import visao.JanelaVenda;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import modelo.Produto;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
+import modelo.Modelo;
+import visao.JanelaConfirmarCompra;
+import visao.JanelaEstoque;
+import visao.JanelaRegistro;
+import visao.JanelaVenda;
+import modelo.ListaProduto;
+import visao.Visao;
 
 public class Controladora {
 
-	private Modelo modelo;
-        private Visao visao;
+	Modelo modelo;
+        Visao visao;
+        JanelaVenda janelaVenda;
+        JanelaEstoque janelaEstoque;
+        JanelaRegistro janelaRegistro;
+        JanelaConfirmarCompra janelaConfirmarCompra;
+        ListaProduto listaProdutos, listaCarrinho; 
         
-        private JanelaCadastro janelaCadastro;
-        private JanelaConfirmarVenda janelaConfirmarVenda;
-        private JanelaEstoque janelaEstoque;
-        private JanelaVenda janelaVenda;
-                          
-	ArrayList<Produto> listaProdutos = new ArrayList<>();
-	private Produto produto;
-	private Estoque estoque;
-        
-        
-	public Controladora(Visao visao, Modelo modelo) {
+	public Controladora(Visao visao, Modelo modelo) throws IOException {
 
 		this.modelo = modelo;
                 this.visao = visao;
-               
-                this.visao.addBotaoExibirJanelaCadastroListener(new BotaoExibirJanelaCadastroListener());
-                this.visao.addBotaoExibirJanelaEstoqueListener(new BotaoExibirJanelaEstoqueListener());
-                this.visao.addBotaoExibirJanelaVendaListener(new BotaoExibirJanelaVendaListener());
+                ArrayList<Produto> arrayListProdutos = null;
+                
+                
+                //this.listaCarrinho = new ListaProduto();
+                //this.listaProdutos = new ListaProduto(modelo);
+                arrayListProdutos = modelo.AbrirArquivo();
+                this.listaProdutos = new ListaProduto(arrayListProdutos);
+                visao.addEstoqueButtonListener(new EstoqueButtonListener());
+                visao.addVendaButtonListener(new VendaButtonListener());
+                visao.addRegistroButtonListener(new RegistroButtonListener());
+                visao.addSairMenuItem(new SairMenuItemListener());
 	}
-	
-	public void AbrirArquivo(String arquivo)
-	{
-		modelo.AbrirArquivo(arquivo);
-	}
-	
-	public void AdicionarProduto(String descricao, int quantidade, int valor) {
-		
-		int quantidadeEmEstoque;
-		
-		// se o produto não existir adiciona-lo... {  
-			produto = new Produto(descricao, quantidade, valor);
-			estoque.AlterarQuantidadeEmEstoque(produto,quantidade);
-		// }
-		// else {
-			quantidadeEmEstoque = estoque.VerificarQuantidadeEmEstoque(produto);
-			quantidadeEmEstoque += quantidade;
-			estoque.AlterarQuantidadeEmEstoque(produto,quantidadeEmEstoque);
-		// }
-		
-		listaProdutos.add(produto);
-		modelo.RegistrarEmArquivo(listaProdutos);
-	}
-	
-	public void VenderProduto(Produto produto, int quantidade) {
-		
-		int quantidadeEmEstoque;
-		
-		quantidadeEmEstoque = estoque.VerificarQuantidadeEmEstoque(produto);
-		quantidadeEmEstoque -= quantidade;
-		estoque.AlterarQuantidadeEmEstoque(produto,quantidadeEmEstoque);
-		
-		// tem que atualizar array list ... listaProdutos.add(produto);
-		
-		modelo.RegistrarEmArquivo(listaProdutos);
-		
-	}
-	
-	public void AlterarQuantidadeEmEstoque(String descricao, int quantidade) {
-            
-            
-        }
-
-        // ---------------------------------------------------------------------
-        // ------------------------Listeners dos botões-------------------------
-        // ---------------------------------------------------------------------
-
-        //-------------------------------Cadastro-------------------------------
-        //----------------------------------------------------------------------
-        class BotaoExibirJanelaCadastroListener implements ActionListener{
-            @Override
-                public void actionPerformed(ActionEvent e) {
-                    JanelaCadastro janelaCadastro = new JanelaCadastro(visao, true);
-                    janelaCadastro.setVisible(true);
-                    janelaCadastro.addBotaoCadastrarListener(new BotaoCadastrarListener());
-                }
-       
-        }
+//////////////////////////// Aqui encontra-se todas as InnerClass com os ActionListener da classe Visao
         
-        class BotaoCadastrarListener implements ActionListener {
-             @Override
-             public void actionPerformed(ActionEvent e) {
-            }
+    private class EstoqueButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+              janelaEstoque = new JanelaEstoque(visao, true, listaProdutos.getLista());
+              janelaEstoque.addFinControleButtonListener(new FinControleButtonListener());
+              janelaEstoque.addVerificarButtonListener(new VerificarButtonListener());
+              janelaEstoque.addModificarButtonListener(new ModificarButtonListener());
+              janelaEstoque.setVisible(true);
         }
-        
-        class BotaoCancelarCadastroListener implements ActionListener {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
+    }
+    
+    private class RegistroButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+              janelaRegistro = new JanelaRegistro(visao, true);
+              janelaRegistro.addRegistrarButtonListener(new RegistrarButtonListener());
+              janelaRegistro.addCancelarRegistroButtonListener(new CancelarRegistroButtonListener());
+              janelaRegistro.setVisible(true);            
         }
-        
-        
-        //-------------------------------Estoque--------------------------------
-        //----------------------------------------------------------------------
-        class BotaoExibirJanelaEstoqueListener implements ActionListener{
-            @Override
-                public void actionPerformed(ActionEvent e) {
-                    JanelaEstoque janelaEstoque = new JanelaEstoque(visao, true);
-                    janelaEstoque.setVisible(true);
-                    janelaEstoque.addBotaoFinalizarControleEstoqueListener(new BotaoFinalizarControleEstoqueListener());
-                }
-	}
-        
-        class BotaoFinalizarControleEstoqueListener implements ActionListener {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
-        }
+    }
+    private class VendaButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+              janelaVenda = new JanelaVenda(visao, true, listaProdutos.getLista());
+              janelaVenda.addCarrinhoButtonListener(new CarrinhoButtonListener());
+              janelaVenda.addFinalizarButtonListener(new FinalizarButtonListener());
+              janelaVenda.addCancelarButtonListener(new CancelarButtonListener());
+              janelaVenda.setVisible(true);
               
-        //--------------------------------Venda---------------------------------
-        //----------------------------------------------------------------------
-        class BotaoExibirJanelaVendaListener implements ActionListener{
-            @Override
-                public void actionPerformed(ActionEvent e) {
-                    JanelaVenda janelaVenda = new JanelaVenda(visao, true);
-                    janelaVenda.setVisible(true);
-                    janelaVenda.addBotaoAdicionarAoCarrinhoListener(new BotaoAdicionarAoCarrinhoListener());
-                    janelaVenda.addBotaoCancelarCompraListener(new BotaoCancelarCompraListener());
-                    janelaVenda.addBotaoFinalizarCompraListener(new BotaoFinalizarCompraListener());
-                }
-	}
-        
-        class BotaoAdicionarAoCarrinhoListener implements ActionListener {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
         }
-        
-        class BotaoCancelarCompraListener implements ActionListener {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
+    }
+           
+    private class SairMenuItemListener implements ActionListener {
+       @Override
+       public void actionPerformed(ActionEvent e) {
+              modelo.GravarArquivo();
+              visao.dispose();
+              System.exit(0);
         }
-        
-        class BotaoFinalizarCompraListener implements ActionListener {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
+    }
+ 
+    //////////////////////////// Aqui encontra-se todas as InnerClass com os ActionListener da classe JanelaRegistro
+               
+    private class RegistrarButtonListener implements ActionListener {
+       @Override
+       public void actionPerformed(ActionEvent e) {
+           modelo.adicionarProduto(janelaRegistro.getTextNome(), janelaRegistro.getTextDescricao(), Integer.parseInt(janelaRegistro.getTextQnt()), Integer.parseInt(janelaRegistro.getTextValor()));
+           janelaRegistro.showRegistro();
+           listaProdutos.addLista(janelaRegistro.getTextNome());
+           janelaRegistro.dispose();
+       }
+    }
+     
+    private class CancelarRegistroButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            janelaRegistro.dispose();
+                         
         }
-         
-        //-----------------------Janela Confimar Venda--------------------------
-        class BotaoCancelarVendaListener implements ActionListener {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JanelaConfirmarVenda janelaConfirmarVenda = new JanelaConfirmarVenda(visao, true);
-                janelaConfirmarVenda.setVisible(true);
-                janelaConfirmarVenda.addBotaoCancelarVendaListener(new BotaoCancelarVendaListener());
-                janelaConfirmarVenda.addBotaoConcluirVendaListener(new BotaoConcluirVendaListener());
-                janelaConfirmarVenda.addBotaoRemoverDaListaDeVendasListener(new BotaoRemoverDaListaDeVendasListener());
-             }
+    }
+    
+    //////////////////////////// Aqui encontram-se todas as InnerClass com os ActionListener da classe JanelaEstoque
+    private class FinControleButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            janelaEstoque.dispose();
+                         
         }
-        
-        class BotaoConcluirVendaListener implements ActionListener {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
+    }
+    
+    private class VerificarButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int index = janelaEstoque.getItemSelecionado();
+            int qntAtual = modelo.getQntProduto(listaProdutos.getNome(index));
+            janelaEstoque.setQntAtual(qntAtual);
         }
+    }
+    
+    private class ModificarButtonListener implements ActionListener {
+       @Override
+       public void actionPerformed(ActionEvent e) {
+           int index = janelaEstoque.getItemSelecionado();
+           String nome = listaProdutos.getNome(index);
+           int qntNova = janelaEstoque.getQntNova();
+           modelo.setQntProduto(nome, qntNova);
+        }
+    }
+    
+//////////////////////////// Aqui encontra-se todas as InnerClass com os ActionListener da classe JanelaVenda
+    private class CarrinhoButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int index = janelaVenda.getItemSelecionado();
+            String nome = listaProdutos.getNome(index);
+            modelo.addCarrinho(nome);
+        }
+    }
+    
+   private class FinalizarButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+              ArrayList<Produto> car = modelo.getCarrinho();
+              for (int i = 0; i < car.size(); i++){
+                  listaCarrinho.addLista(car.get(i).getNome());
+              }
+              janelaConfirmarCompra = new JanelaConfirmarCompra(new Visao(), true, listaCarrinho.getLista());
+              janelaConfirmarCompra.addConcluirComprarButtonListener(new ConcluirCompraButtonListener());
+              janelaConfirmarCompra.addCancelarCompraButtonListener(new CancelarCompraButtonListener());
+              janelaConfirmarCompra.addRemoverButtonListener(new RemoverButtonListener());
+              janelaConfirmarCompra.setVisible(true);
+        }
+    }
+           
+    private class CancelarButtonListener implements ActionListener {
+       @Override
+       public void actionPerformed(ActionEvent e) {
+              modelo.limparCarrinho();
+              listaCarrinho.clear();
+              janelaVenda.dispose();
+        }
+    }
 
-        class BotaoRemoverDaListaDeVendasListener implements ActionListener {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            
-            }
-        }
-        
+
+//////////////////////////// Aqui encontra-se todas as InnerClass com os ActionListener da classe JanelaConfirmarCompra
+    
+    private class RemoverButtonListener implements ActionListener {
+       @Override
+       public void actionPerformed(ActionEvent e) {
+           listaCarrinho.removerItem(janelaConfirmarCompra.getIndex());
+       }
+    }
+    
+    private class ConcluirCompraButtonListener implements ActionListener {
+       @Override
+       public void actionPerformed(ActionEvent e) {
+           modelo.concluirCompra();     
+           janelaConfirmarCompra.showConcluir();
+           janelaConfirmarCompra.dispose();
+           modelo.limparCarrinho();
+           listaCarrinho.clear();
+       }
+    }
+    
+    private class CancelarCompraButtonListener implements ActionListener {
+       @Override
+       public void actionPerformed(ActionEvent e) {
+           modelo.limparCarrinho();
+           janelaConfirmarCompra.dispose();
+       }
+    }
 }
