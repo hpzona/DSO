@@ -213,8 +213,6 @@ public class Controladora {
                     io.printStackTrace();
                 }
             }
-            
-            ok = true;
         }
     }
 
