@@ -15,32 +15,32 @@ import visao.JanelaPrincipal;
 public class Controladora {
 
    Modelo modelo;
-   JanelaPrincipal visao;
+   JanelaPrincipal janelaPrincipal;
    JanelaVenda janelaVenda;
    JanelaEstoque janelaEstoque;
    JanelaCadastro janelaCadastro;
    ListaProduto listaProdutos;
    ArrayList<Produto> arrayListProdutos, carrinho;
 
-   public Controladora(JanelaPrincipal visao, Modelo modelo) throws IOException {
+   public Controladora(JanelaPrincipal janelaPrincipal, Modelo modelo) throws IOException {
 
       this.modelo = modelo;
-      this.visao = visao;
+      this.janelaPrincipal = janelaPrincipal;
       this.arrayListProdutos = modelo.AbrirArquivo();
       this.carrinho = new ArrayList();
       this.listaProdutos = new ListaProduto();
       if (arrayListProdutos != null) {
          this.listaProdutos = new ListaProduto(arrayListProdutos);
          if (arrayListProdutos.isEmpty()) {
-            visao.AlertaLojaSemProdutos();
+            janelaPrincipal.AlertaLojaSemProdutos();
          }
       } else {
-         visao.AlertaLojaSemProdutos();
+         janelaPrincipal.AlertaLojaSemProdutos();
       }
-      visao.addAbrirJanelaCadastroButtonListener(new AbrirJanelaCadastroButtonListener());
-      visao.addAbrirJanelaEstoqueButtonListener(new AbrirJanelaEstoqueButtonListener());
-      visao.addAbrirJanelaVendaButtonListener(new AbrirJanelaVendaButtonListener());
-      visao.addSairMenuItem(new SairMenuItemListener());
+      janelaPrincipal.addAbrirJanelaCadastroButtonListener(new AbrirJanelaCadastroButtonListener());
+      janelaPrincipal.addAbrirJanelaEstoqueButtonListener(new AbrirJanelaEstoqueButtonListener());
+      janelaPrincipal.addAbrirJanelaVendaButtonListener(new AbrirJanelaVendaButtonListener());
+      janelaPrincipal.addSairMenuItem(new SairMenuItemListener());
    }
 //////////////////////////// Aqui encontra-se todas as InnerClass com os ActionListener da classe Visao
 
@@ -49,9 +49,9 @@ public class Controladora {
       @Override
       public void actionPerformed(ActionEvent e) {
          if (arrayListProdutos == null || arrayListProdutos.isEmpty()) {
-            visao.AlertaLojaSemProdutos();
+            janelaPrincipal.AlertaLojaSemProdutos();
          } else {
-            janelaEstoque = new JanelaEstoque(visao, true, listaProdutos.getLista());
+            janelaEstoque = new JanelaEstoque(janelaPrincipal, true, listaProdutos.getLista());
             janelaEstoque.addFecharJanelaEstoqueButtonListener(new FecharJanelaEstoqueButtonListener());
             janelaEstoque.addVerificarEstoqueButtonListener(new VerificarEstoqueButtonListener());
             janelaEstoque.addModificarEstoqueButtonListener(new ModificarEstoqueButtonListener());
@@ -65,7 +65,7 @@ public class Controladora {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-         janelaCadastro = new JanelaCadastro(visao, true);
+         janelaCadastro = new JanelaCadastro(janelaPrincipal, true);
          janelaCadastro.addCadastrarProdutoButtonListener(new CadastrarProdutoButtonListener());
          janelaCadastro.addFecharJanelaCadastroButtonListener(new FecharJanelaCadastroButtonListener());
          janelaCadastro.setVisible(true);
@@ -77,9 +77,9 @@ public class Controladora {
       @Override
       public void actionPerformed(ActionEvent e) {
          if (arrayListProdutos == null || arrayListProdutos.isEmpty()) {
-            visao.AlertaLojaSemProdutos();
+            janelaPrincipal.AlertaLojaSemProdutos();
          } else {
-            janelaVenda = new JanelaVenda(visao, true, listaProdutos.getLista());
+            janelaVenda = new JanelaVenda(janelaPrincipal, true, listaProdutos.getLista());
             janelaVenda.addTerminarVendaButtonListener(new TerminarVendaButtonListener());
             janelaVenda.addConfirmarVendaButtonListener(new ConfirmarVendaButtonListener());
             janelaVenda.setarFocoNoItem(0);
@@ -92,7 +92,7 @@ public class Controladora {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-         visao.dispose();
+         janelaPrincipal.dispose();
          System.exit(0);
       }
    }
