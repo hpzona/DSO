@@ -107,15 +107,11 @@ public class Modelo {
 
             for (int i = 0; i < this.arrayListProdutos.size(); i++) {
                 this.produto = this.arrayListProdutos.get(i);
-
                 raf.writeUTF(this.produto.getNome());
-                System.out.println(this.produto.getNome());
                 raf.writeUTF(this.produto.getDescricao());
                 raf.writeInt(this.produto.getQuantidade());
                 raf.writeInt(this.produto.getValor());
             }
-
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -153,8 +149,6 @@ public class Modelo {
                     valor = raf.readInt();
                     this.produto = new Produto(nomeDoProduto, descricaoDoProduto, quantidade, valor);
                     this.arrayListProdutos.add(this.produto);
-                    
-
                 } catch (EOFException e) {
                     finalDeArquivo = true;
                 } catch (IOException e) {
