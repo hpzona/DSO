@@ -6,6 +6,7 @@ package visao;
 
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 public class JanelaEstoque extends javax.swing.JDialog{ 
 
@@ -132,6 +133,10 @@ public class JanelaEstoque extends javax.swing.JDialog{
    public int getQuantidadeNovaEstoque(){
        return Integer.parseInt(jTextFieldNovaQuantidade.getText());
    }
+   
+   public String getTextQuantidadeNovaEstoque() {
+       return jTextFieldNovaQuantidade.getText();
+   }
      
    public int getItemSelecionado(){
        return jListProdutosEmEstoque.getSelectedIndex();
@@ -139,7 +144,16 @@ public class JanelaEstoque extends javax.swing.JDialog{
    
    public void SetarFocoNoItem(int index) {
         jListProdutosEmEstoque.setSelectedIndex(index);
-    }
+   }
+   
+   public void NovaQuantidadeProdutoEmBranco() {
+        JOptionPane.showMessageDialog(null, "O campo Nova Quantidade é Obrigatório", "CAMPO OBRIGATÓRIO", WIDTH);
+   }
+   
+   public void NovaQuantidadeValorInvalido() {
+        JOptionPane.showMessageDialog(null, "O campo Nova Quantidade só aceita números", "VALOR INVÁLIDO", WIDTH);
+   }
+   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonFecharJanelaEstoque;

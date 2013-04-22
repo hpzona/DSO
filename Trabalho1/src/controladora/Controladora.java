@@ -96,7 +96,7 @@ public class Controladora {
         }
     }
 
-    //////////////////////////// Aqui encontra-se todas as InnerClass com os ActionListener da classe JanelaRegistro
+    //////////////////////////// Aqui encontra-se todas as InnerClass com os ActionListener da classe JanelaCadastro
     private class CadastrarProdutoButtonListener implements ActionListener {
 
         @Override
@@ -108,7 +108,7 @@ public class Controladora {
                 if (janelaCadastro.getTextNome().isEmpty())
                    throw new IllegalArgumentException();
 
-            } catch (IllegalArgumentException ex)   {   
+            } catch (IllegalArgumentException iae)   {   
                 janelaCadastro.NomeDoProdutoEmBranco();
                 ok = false;
             }
@@ -118,9 +118,9 @@ public class Controladora {
                     throw new IllegalArgumentException();
                 else
                     Integer.parseInt(janelaCadastro.getTextQuantidade());
-            } catch (NumberFormatException ex) {
+            } catch (NumberFormatException nfe) {
                 janelaCadastro.QuantidadeValorInvalido();
-            } catch (IllegalArgumentException ex) {
+            } catch (IllegalArgumentException iae) {
                 janelaCadastro.QuantidadeProdutoEmBranco();
                 ok = false;
             }
@@ -130,10 +130,9 @@ public class Controladora {
                     throw new IllegalArgumentException();
                else
                    Integer.parseInt(janelaCadastro.getTextPreco());
-            }
-            catch (NumberFormatException ex) {
+            } catch (NumberFormatException nfe) {
                 janelaCadastro.PreçoValorInvalido();
-            } catch (IllegalArgumentException ex) {
+            } catch (IllegalArgumentException iae) {
                 janelaCadastro.PreçoProdutoEmBranco();
                 ok = false;
             }
@@ -143,12 +142,11 @@ public class Controladora {
                 arrayListProdutos = modelo.getLista();
                 janelaCadastro.showCadastroEfetuado();
                 listaProdutos.addLista(janelaCadastro.getTextNome());
-                // AtualizarListaProduto
                 try {
                     modelo.AtualizarDadosEmArquivo();
                     janelaCadastro.dispose();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                } catch (IOException io) {
+                    io.printStackTrace();
                 }
              }
          }
@@ -187,15 +185,36 @@ public class Controladora {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            
+            boolean ok = true;
+         
             int index = janelaEstoque.getItemSelecionado();
             String nome = listaProdutos.getNome(index);
-            int qntNova = janelaEstoque.getQuantidadeNovaEstoque();
-            modelo.setQntProduto(nome, qntNova);
+            
             try {
-                modelo.AtualizarDadosEmArquivo();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+               if (janelaEstoque.getTextQuantidadeNovaEstoque().isEmpty())
+                    throw new IllegalArgumentException();
+               else
+                   Integer.parseInt(janelaEstoque.getTextQuantidadeNovaEstoque());
+            } catch (NumberFormatException nfe) {
+                janelaEstoque.NovaQuantidadeValorInvalido();
+                nfe.getMessage();
+            } catch (IllegalArgumentException iae) {
+                janelaEstoque.NovaQuantidadeProdutoEmBranco();
+                ok = false;
             }
+            
+            if (ok) {
+                int qntNova = janelaEstoque.getQuantidadeNovaEstoque();
+                modelo.setQntProduto(nome, qntNova);
+                try {
+                    modelo.AtualizarDadosEmArquivo();
+                } catch (IOException io) {
+                    io.printStackTrace();
+                }
+            }
+            
+            ok = true;
         }
     }
 
@@ -216,8 +235,8 @@ public class Controladora {
                     janelaVenda.SetarFocoNoItem(--index);
                 try {
                     modelo.AtualizarDadosEmArquivo();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                } catch (IOException io) {
+                    io.printStackTrace();
                 }
             }
             else
