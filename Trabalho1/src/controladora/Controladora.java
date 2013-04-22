@@ -5,11 +5,9 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import modelo.Produto;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.Modelo;
 import visao.JanelaEstoque;
-import visao.JanelaRegistro;
+import visao.JanelaCadastro;
 import visao.JanelaVenda;
 import modelo.ListaProduto;
 import visao.Visao;
@@ -20,7 +18,7 @@ public class Controladora {
     Visao visao;
     JanelaVenda janelaVenda;
     JanelaEstoque janelaEstoque;
-    JanelaRegistro janelaRegistro;
+    JanelaCadastro janelaCadastro;
     ListaProduto listaProdutos, listaCarrinho;
     ArrayList<Produto> arrayListProdutos;
 
@@ -38,14 +36,14 @@ public class Controladora {
         } else {
             visao.AlertaLojaSemProdutos();
         }
-        visao.addEstoqueButtonListener(new EstoqueButtonListener());
-        visao.addVendaButtonListener(new VendaButtonListener());
-        visao.addRegistroButtonListener(new RegistroButtonListener());
+        visao.addAbrirJanelaCadastroButtonListener(new AbrirJanelaCadastroButtonListener());
+        visao.addAbrirJanelaEstoqueButtonListener(new AbrirJanelaEstoqueButtonListener());
+        visao.addAbrirJanelaVendaButtonListener(new AbrirJanelaVendaButtonListener());
         visao.addSairMenuItem(new SairMenuItemListener());
     }
 //////////////////////////// Aqui encontra-se todas as InnerClass com os ActionListener da classe Visao
 
-    private class EstoqueButtonListener implements ActionListener {
+    private class AbrirJanelaEstoqueButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -53,27 +51,27 @@ public class Controladora {
                 visao.AlertaLojaSemProdutos();
             } else {
                 janelaEstoque = new JanelaEstoque(visao, true, listaProdutos.getLista());
-                janelaEstoque.addFinControleButtonListener(new FinControleButtonListener());
-                janelaEstoque.addVerificarButtonListener(new VerificarButtonListener());
-                janelaEstoque.addModificarButtonListener(new ModificarButtonListener());
+                janelaEstoque.addFecharJanelaEstoqueButtonListener(new FecharJanelaEstoqueButtonListener());
+                janelaEstoque.addVerificarEstoqueButtonListener(new VerificarEstoqueButtonListener());
+                janelaEstoque.addModificarEstoqueButtonListener(new ModificarEstoqueButtonListener());
                 janelaEstoque.SetarFocoNoItem(0);
                 janelaEstoque.setVisible(true);
             }
         }
     }
 
-    private class RegistroButtonListener implements ActionListener {
+    private class AbrirJanelaCadastroButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            janelaRegistro = new JanelaRegistro(visao, true);
-            janelaRegistro.addRegistrarButtonListener(new RegistrarButtonListener());
-            janelaRegistro.addCancelarRegistroButtonListener(new CancelarRegistroButtonListener());
-            janelaRegistro.setVisible(true);
+            janelaCadastro = new JanelaCadastro(visao, true);
+            janelaCadastro.addCadastrarProdutoButtonListener(new CadastrarProdutoButtonListener());
+            janelaCadastro.addFecharJanelaCadastroButtonListener(new FecharJanelaCadastroButtonListener());
+            janelaCadastro.setVisible(true);
         }
     }
 
-    private class VendaButtonListener implements ActionListener {
+    private class AbrirJanelaVendaButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -99,55 +97,56 @@ public class Controladora {
     }
 
     //////////////////////////// Aqui encontra-se todas as InnerClass com os ActionListener da classe JanelaRegistro
-    private class RegistrarButtonListener implements ActionListener {
+    private class CadastrarProdutoButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             
             boolean ok = true;
             
-            /*try {
-                if (janelaRegistro.getTextNome().isEmpty())
+            try {
+                if (janelaCadastro.getTextNome().isEmpty())
                    throw new IllegalArgumentException();
 
             } catch (IllegalArgumentException ex)   {   
-                janelaRegistro.NomeDoProdutoEmBranco();
+                janelaCadastro.NomeDoProdutoEmBranco();
                 ok = false;
             }
  
             try {
-                //Integer.parseInt(janelaRegistro.getTextQnt());
-                if (janelaRegistro.getTextQnt().isEmpty())
+                if (janelaCadastro.getTextQuantidade().isEmpty())
                     throw new IllegalArgumentException();
+                else
+                    Integer.parseInt(janelaCadastro.getTextQuantidade());
             } catch (NumberFormatException ex) {
-                janelaRegistro.QuantidadeValorInvalido();
+                janelaCadastro.QuantidadeValorInvalido();
             } catch (IllegalArgumentException ex) {
-                janelaRegistro.QuantidadeProdutoEmBranco();
+                janelaCadastro.QuantidadeProdutoEmBranco();
                 ok = false;
             }
             
             try {
-                //Integer.parseInt(janelaRegistro.getTextValor());
-                if (janelaRegistro.getTextValor().isEmpty())
+               if (janelaCadastro.getTextPreco().isEmpty())
                     throw new IllegalArgumentException();
+               else
+                   Integer.parseInt(janelaCadastro.getTextPreco());
             }
             catch (NumberFormatException ex) {
-                janelaRegistro.PreçoValorInvalido();
-                ex.getMessage();
+                janelaCadastro.PreçoValorInvalido();
             } catch (IllegalArgumentException ex) {
-                janelaRegistro.PreçoProdutoEmBranco();
+                janelaCadastro.PreçoProdutoEmBranco();
                 ok = false;
-            }*/
+            }
             
             if (ok) {
-                modelo.adicionarProduto(janelaRegistro.getTextNome(), janelaRegistro.getTextDescricao(), Integer.parseInt(janelaRegistro.getTextQnt()), Integer.parseInt(janelaRegistro.getTextValor()));
+                modelo.adicionarProduto(janelaCadastro.getTextNome(), janelaCadastro.getTextDescricao(), Integer.parseInt(janelaCadastro.getTextQuantidade()), Integer.parseInt(janelaCadastro.getTextPreco()));
                 arrayListProdutos = modelo.getLista();
-                janelaRegistro.showRegistro();
-                listaProdutos.addLista(janelaRegistro.getTextNome());
+                janelaCadastro.showCadastroEfetuado();
+                listaProdutos.addLista(janelaCadastro.getTextNome());
                 // AtualizarListaProduto
                 try {
                     modelo.AtualizarDadosEmArquivo();
-                    janelaRegistro.dispose();
+                    janelaCadastro.dispose();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -155,17 +154,17 @@ public class Controladora {
          }
     }
 
-    private class CancelarRegistroButtonListener implements ActionListener {
+    private class FecharJanelaCadastroButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            janelaRegistro.dispose();
+            janelaCadastro.dispose();
 
         }
     }
 
     //////////////////////////// Aqui encontram-se todas as InnerClass com os ActionListener da classe JanelaEstoque
-    private class FinControleButtonListener implements ActionListener {
+    private class FecharJanelaEstoqueButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -174,23 +173,23 @@ public class Controladora {
         }
     }
 
-    private class VerificarButtonListener implements ActionListener {
+    private class VerificarEstoqueButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             int index = janelaEstoque.getItemSelecionado();
             int qntAtual = modelo.getQntProduto(listaProdutos.getNome(index));
-            janelaEstoque.setQntAtual(qntAtual);
+            janelaEstoque.setQuantidadeAtualEstoque(qntAtual);
         }
     }
 
-    private class ModificarButtonListener implements ActionListener {
+    private class ModificarEstoqueButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             int index = janelaEstoque.getItemSelecionado();
             String nome = listaProdutos.getNome(index);
-            int qntNova = janelaEstoque.getQntNova();
+            int qntNova = janelaEstoque.getQuantidadeNovaEstoque();
             modelo.setQntProduto(nome, qntNova);
             try {
                 modelo.AtualizarDadosEmArquivo();

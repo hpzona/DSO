@@ -12,7 +12,7 @@ public class JanelaEstoque extends javax.swing.JDialog{
     public JanelaEstoque(java.awt.Frame parent, boolean modal, DefaultListModel lista) {
         super(parent, modal);
         initComponents();
-        jList1.setModel(lista);
+        jListProdutosEmEstoque.setModel(lista);
         setLocationRelativeTo(null);
     }
     @SuppressWarnings("unchecked")
@@ -20,139 +20,139 @@ public class JanelaEstoque extends javax.swing.JDialog{
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jListProdutosEmEstoque = new javax.swing.JList();
+        jLabelNovaQuantidade = new javax.swing.JLabel();
+        jLabelQuantidadeAtual = new javax.swing.JLabel();
+        jButtonFecharJanelaEstoque = new javax.swing.JButton();
+        jTextFieldQuantidadeAtual = new javax.swing.JTextField();
+        jTextFieldNovaQuantidade = new javax.swing.JTextField();
+        jButtonVerificarEstoque = new javax.swing.JButton();
+        jButtonModificarEstoque = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(880, 330));
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("CONTROLE DE ESTOQUE:");
-        jLabel1.setToolTipText("");
+        jLabelTitulo.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelTitulo.setText("CONTROLE DE ESTOQUE:");
+        jLabelTitulo.setToolTipText("");
 
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane2.setViewportView(jList1);
+        jListProdutosEmEstoque.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(jListProdutosEmEstoque);
 
-        jLabel2.setText("Nova Qnt");
+        jLabelNovaQuantidade.setText("Nova Quantidade");
 
-        jLabel3.setText("Qnt Atual");
+        jLabelQuantidadeAtual.setText("Quantidade Atual");
 
-        jButton2.setText("Finalizar Controle");
+        jButtonFecharJanelaEstoque.setText("Fechar");
 
-        jTextField1.setEditable(false);
-        jTextField1.setAutoscrolls(false);
+        jTextFieldQuantidadeAtual.setEditable(false);
+        jTextFieldQuantidadeAtual.setAutoscrolls(false);
 
-        jTextField2.setToolTipText("");
+        jTextFieldNovaQuantidade.setToolTipText("");
 
-        jButton1.setText("Verificar");
-        jButton1.setActionCommand("Verificar");
+        jButtonVerificarEstoque.setText("Verificar");
 
-        jButton3.setText("Modificar");
+        jButtonModificarEstoque.setText("Modificar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
+                    .addComponent(jButtonFecharJanelaEstoque)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelTitulo)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addComponent(jLabelQuantidadeAtual)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1)
-                            .addComponent(jButton3)
+                                .addComponent(jTextFieldQuantidadeAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(jLabelNovaQuantidade)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(29, 29, 29))
+                                .addComponent(jTextFieldNovaQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonVerificarEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonModificarEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))))
+                .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(jLabelTitulo)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                            .addComponent(jTextFieldQuantidadeAtual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelQuantidadeAtual))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(jButtonVerificarEstoque)
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelNovaQuantidade)
+                            .addComponent(jTextFieldNovaQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3))
+                        .addComponent(jButtonModificarEstoque))
                     .addComponent(jScrollPane2))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(jButtonFecharJanelaEstoque)
                 .addGap(30, 30, 30))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
    
-    public void addFinControleButtonListener(ActionListener lis){
-        jButton2.addActionListener(lis);
+   public void addFecharJanelaEstoqueButtonListener(ActionListener lis){
+        jButtonFecharJanelaEstoque.addActionListener(lis);
    }
     
-   public void addVerificarButtonListener(ActionListener lis){
-        jButton1.addActionListener(lis);
+   public void addVerificarEstoqueButtonListener(ActionListener lis){
+        jButtonVerificarEstoque.addActionListener(lis);
    }
    
-   public void addModificarButtonListener(ActionListener lis){
-        jButton3.addActionListener(lis);
+   public void addModificarEstoqueButtonListener(ActionListener lis){
+        jButtonModificarEstoque.addActionListener(lis);
    }
    
-   public void setQntAtual(int qnt){
-       jTextField1.setText("" + qnt);
+   public void setQuantidadeAtualEstoque(int qnt){
+       jTextFieldQuantidadeAtual.setText("" + qnt);
    }
    
-   public int getQntNova(){
-       return Integer.parseInt(jTextField2.getText());
+   public int getQuantidadeNovaEstoque(){
+       return Integer.parseInt(jTextFieldNovaQuantidade.getText());
    }
      
    public int getItemSelecionado(){
-       return jList1.getSelectedIndex();
+       return jListProdutosEmEstoque.getSelectedIndex();
    }
    
    public void SetarFocoNoItem(int index) {
-        jList1.setSelectedIndex(index);
+        jListProdutosEmEstoque.setSelectedIndex(index);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JList jList1;
+    private javax.swing.JButton jButtonFecharJanelaEstoque;
+    private javax.swing.JButton jButtonModificarEstoque;
+    private javax.swing.JButton jButtonVerificarEstoque;
+    private javax.swing.JLabel jLabelNovaQuantidade;
+    private javax.swing.JLabel jLabelQuantidadeAtual;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JList jListProdutosEmEstoque;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextFieldNovaQuantidade;
+    private javax.swing.JTextField jTextFieldQuantidadeAtual;
     // End of variables declaration//GEN-END:variables
     private DefaultListModel listModel;
 }
