@@ -1,22 +1,19 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package visao;
 
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-public class JanelaEstoque extends javax.swing.JDialog{ 
+public class JanelaEstoque extends javax.swing.JDialog {
 
-    public JanelaEstoque(java.awt.Frame parent, boolean modal, DefaultListModel lista) {
-        super(parent, modal);
-        initComponents();
-        jListProdutosEmEstoque.setModel(lista);
-        setLocationRelativeTo(null);
-    }
-    @SuppressWarnings("unchecked")
+   public JanelaEstoque(java.awt.Frame parent, boolean modal, DefaultListModel lista) {
+      super(parent, modal);
+      initComponents();
+      jListProdutosEmEstoque.setModel(lista);
+      setLocationRelativeTo(null);
+   }
+
+   @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -113,48 +110,46 @@ public class JanelaEstoque extends javax.swing.JDialog{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-   
-   public void addFecharJanelaEstoqueButtonListener(ActionListener lis){
-        jButtonFecharJanelaEstoque.addActionListener(lis);
+
+   public void addFecharJanelaEstoqueButtonListener(ActionListener lis) {
+      jButtonFecharJanelaEstoque.addActionListener(lis);
    }
-    
-   public void addVerificarEstoqueButtonListener(ActionListener lis){
-        jButtonVerificarEstoque.addActionListener(lis);
+
+   public void addVerificarEstoqueButtonListener(ActionListener lis) {
+      jButtonVerificarEstoque.addActionListener(lis);
    }
-   
-   public void addModificarEstoqueButtonListener(ActionListener lis){
-        jButtonModificarEstoque.addActionListener(lis);
+
+   public void addModificarEstoqueButtonListener(ActionListener lis) {
+      jButtonModificarEstoque.addActionListener(lis);
    }
-   
-   public void setQuantidadeAtualEstoque(int qnt){
-       jTextFieldQuantidadeAtual.setText("" + qnt);
+
+   public void setQuantidadeAtualEstoque(int qnt) {
+      jTextFieldQuantidadeAtual.setText("" + qnt);
    }
-   
-   public int getQuantidadeNovaEstoque(){
-       return Integer.parseInt(jTextFieldNovaQuantidade.getText());
+
+   public int getQuantidadeNovaEstoque() {
+      return Integer.parseInt(jTextFieldNovaQuantidade.getText());
    }
-   
+
    public String getTextQuantidadeNovaEstoque() {
-       return jTextFieldNovaQuantidade.getText();
+      return jTextFieldNovaQuantidade.getText();
    }
-     
-   public int getItemSelecionado(){
-       return jListProdutosEmEstoque.getSelectedIndex();
+
+   public int getItemSelecionado() {
+      return jListProdutosEmEstoque.getSelectedIndex();
    }
-   
+
    public void SetarFocoNoItem(int index) {
-        jListProdutosEmEstoque.setSelectedIndex(index);
+      jListProdutosEmEstoque.setSelectedIndex(index);
    }
-   
+
    public void NovaQuantidadeProdutoEmBranco() {
-        JOptionPane.showMessageDialog(null, "O campo Nova Quantidade é Obrigatório", "CAMPO OBRIGATÓRIO", WIDTH);
+      JOptionPane.showMessageDialog(null, "O campo Nova Quantidade é Obrigatório", "CAMPO OBRIGATÓRIO", WIDTH);
    }
-   
+
    public void NovaQuantidadeValorInvalido() {
-        JOptionPane.showMessageDialog(null, "O campo Nova Quantidade só aceita números", "VALOR INVÁLIDO", WIDTH);
+      JOptionPane.showMessageDialog(null, "O campo Nova Quantidade só aceita números", "VALOR INVÁLIDO", WIDTH);
    }
-   
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonFecharJanelaEstoque;
     private javax.swing.JButton jButtonModificarEstoque;
@@ -168,5 +163,5 @@ public class JanelaEstoque extends javax.swing.JDialog{
     private javax.swing.JTextField jTextFieldNovaQuantidade;
     private javax.swing.JTextField jTextFieldQuantidadeAtual;
     // End of variables declaration//GEN-END:variables
-    private DefaultListModel listModel;
+   private DefaultListModel listModel;
 }

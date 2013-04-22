@@ -1,27 +1,19 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package visao;
 
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Willian
- */
 public class JanelaVenda extends javax.swing.JDialog {
 
-    private DefaultListModel lista;
+   private DefaultListModel lista;
 
-    public JanelaVenda(java.awt.Frame parent, boolean modal, DefaultListModel lista) {
-        super(parent, modal);
-        initComponents();
-        jList1.setModel(lista);
-        setLocationRelativeTo(null);
-    }
+   public JanelaVenda(java.awt.Frame parent, boolean modal, DefaultListModel lista) {
+      super(parent, modal);
+      initComponents();
+      jList1.setModel(lista);
+      setLocationRelativeTo(null);
+   }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -78,26 +70,25 @@ public class JanelaVenda extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void addFecharJanelaVendaButtonListener(ActionListener lis) {
-        jButtonFecharJanelaVenda.addActionListener(lis);
-    }
+   public void addFecharJanelaVendaButtonListener(ActionListener lis) {
+      jButtonFecharJanelaVenda.addActionListener(lis);
+   }
 
-    public void addConfirmarVendaButtonListener(ActionListener lis) {
-        jButtonVenderProduto.addActionListener(lis);
-    }
-  
-    public int getItemSelecionado() {
-        return jList1.getSelectedIndex();
-    }
-    
-    public void SetarFocoNoItem(int index) {
-        jList1.setSelectedIndex(index);
-    }
-    
-    public void AlertaLojaSemProdutos() {
-       JOptionPane.showMessageDialog(null, "A loja não possui nenhum produto cadastrado", "Sem produtos", WIDTH);
-    }
+   public void addConfirmarVendaButtonListener(ActionListener lis) {
+      jButtonVenderProduto.addActionListener(lis);
+   }
 
+   public int getItemSelecionado() {
+      return jList1.getSelectedIndex();
+   }
+
+   public void SetarFocoNoItem(int index) {
+      jList1.setSelectedIndex(index);
+   }
+
+   public void AlertaLojaSemProdutos() {
+      JOptionPane.showMessageDialog(null, "A loja não possui nenhum produto cadastrado", "Sem produtos", WIDTH);
+   }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonFecharJanelaVenda;
     private javax.swing.JButton jButtonVenderProduto;

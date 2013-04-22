@@ -14,240 +14,244 @@ import visao.Visao;
 
 public class Controladora {
 
-    Modelo modelo;
-    Visao visao;
-    JanelaVenda janelaVenda;
-    JanelaEstoque janelaEstoque;
-    JanelaCadastro janelaCadastro;
-    ListaProduto listaProdutos, listaCarrinho;
-    ArrayList<Produto> arrayListProdutos;
+   Modelo modelo;
+   Visao visao;
+   JanelaVenda janelaVenda;
+   JanelaEstoque janelaEstoque;
+   JanelaCadastro janelaCadastro;
+   ListaProduto listaProdutos, listaCarrinho;
+   ArrayList<Produto> arrayListProdutos;
 
-    public Controladora(Visao visao, Modelo modelo) throws IOException {
+   public Controladora(Visao visao, Modelo modelo) throws IOException {
 
-        this.modelo = modelo;
-        this.visao = visao;
-        this.arrayListProdutos = modelo.AbrirArquivo();
-        this.listaProdutos = new ListaProduto();
-        if (arrayListProdutos != null) {
-            this.listaProdutos = new ListaProduto(arrayListProdutos);
-            if (arrayListProdutos.isEmpty()) {
-                visao.AlertaLojaSemProdutos();
-            }
-        } else {
+      this.modelo = modelo;
+      this.visao = visao;
+      this.arrayListProdutos = modelo.AbrirArquivo();
+      this.listaProdutos = new ListaProduto();
+      if (arrayListProdutos != null) {
+         this.listaProdutos = new ListaProduto(arrayListProdutos);
+         if (arrayListProdutos.isEmpty()) {
             visao.AlertaLojaSemProdutos();
-        }
-        visao.addAbrirJanelaCadastroButtonListener(new AbrirJanelaCadastroButtonListener());
-        visao.addAbrirJanelaEstoqueButtonListener(new AbrirJanelaEstoqueButtonListener());
-        visao.addAbrirJanelaVendaButtonListener(new AbrirJanelaVendaButtonListener());
-        visao.addSairMenuItem(new SairMenuItemListener());
-    }
+         }
+      } else {
+         visao.AlertaLojaSemProdutos();
+      }
+      visao.addAbrirJanelaCadastroButtonListener(new AbrirJanelaCadastroButtonListener());
+      visao.addAbrirJanelaEstoqueButtonListener(new AbrirJanelaEstoqueButtonListener());
+      visao.addAbrirJanelaVendaButtonListener(new AbrirJanelaVendaButtonListener());
+      visao.addSairMenuItem(new SairMenuItemListener());
+   }
 //////////////////////////// Aqui encontra-se todas as InnerClass com os ActionListener da classe Visao
 
-    private class AbrirJanelaEstoqueButtonListener implements ActionListener {
+   private class AbrirJanelaEstoqueButtonListener implements ActionListener {
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (arrayListProdutos == null || arrayListProdutos.isEmpty()) {
-                visao.AlertaLojaSemProdutos();
-            } else {
-                janelaEstoque = new JanelaEstoque(visao, true, listaProdutos.getLista());
-                janelaEstoque.addFecharJanelaEstoqueButtonListener(new FecharJanelaEstoqueButtonListener());
-                janelaEstoque.addVerificarEstoqueButtonListener(new VerificarEstoqueButtonListener());
-                janelaEstoque.addModificarEstoqueButtonListener(new ModificarEstoqueButtonListener());
-                janelaEstoque.SetarFocoNoItem(0);
-                janelaEstoque.setVisible(true);
-            }
-        }
-    }
-
-    private class AbrirJanelaCadastroButtonListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            janelaCadastro = new JanelaCadastro(visao, true);
-            janelaCadastro.addCadastrarProdutoButtonListener(new CadastrarProdutoButtonListener());
-            janelaCadastro.addFecharJanelaCadastroButtonListener(new FecharJanelaCadastroButtonListener());
-            janelaCadastro.setVisible(true);
-        }
-    }
-
-    private class AbrirJanelaVendaButtonListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (arrayListProdutos == null || arrayListProdutos.isEmpty()) {
-                visao.AlertaLojaSemProdutos();
-            } else {
-                janelaVenda = new JanelaVenda(visao, true, listaProdutos.getLista());
-                janelaVenda.addFecharJanelaVendaButtonListener(new FecharJanelaVendaButtonListener());
-                janelaVenda.addConfirmarVendaButtonListener(new ConfirmarVendaButtonListener());
-                janelaVenda.SetarFocoNoItem(0);
-                janelaVenda.setVisible(true);
-            }
-        }
-    }
-
-    private class SairMenuItemListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            visao.dispose();
-            System.exit(0);
-        }
-    }
-
-    //////////////////////////// Aqui encontra-se todas as InnerClass com os ActionListener da classe JanelaCadastro
-    private class CadastrarProdutoButtonListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            
-            boolean ok = true;
-            
-            try {
-                if (janelaCadastro.getTextNome().isEmpty())
-                   throw new IllegalArgumentException();
-
-            } catch (IllegalArgumentException iae)   {   
-                janelaCadastro.NomeDoProdutoEmBranco();
-                ok = false;
-            }
- 
-            try {
-                if (janelaCadastro.getTextQuantidade().isEmpty())
-                    throw new IllegalArgumentException();
-                else
-                    Integer.parseInt(janelaCadastro.getTextQuantidade());
-            } catch (NumberFormatException nfe) {
-                janelaCadastro.QuantidadeValorInvalido();
-            } catch (IllegalArgumentException iae) {
-                janelaCadastro.QuantidadeProdutoEmBranco();
-                ok = false;
-            }
-            
-            try {
-               if (janelaCadastro.getTextPreco().isEmpty())
-                    throw new IllegalArgumentException();
-               else
-                   Integer.parseInt(janelaCadastro.getTextPreco());
-            } catch (NumberFormatException nfe) {
-                janelaCadastro.PreçoValorInvalido();
-            } catch (IllegalArgumentException iae) {
-                janelaCadastro.PreçoProdutoEmBranco();
-                ok = false;
-            }
-            
-            if (ok) {
-                modelo.adicionarProduto(janelaCadastro.getTextNome(), janelaCadastro.getTextDescricao(), Integer.parseInt(janelaCadastro.getTextQuantidade()), Integer.parseInt(janelaCadastro.getTextPreco()));
-                arrayListProdutos = modelo.getLista();
-                janelaCadastro.showCadastroEfetuado();
-                listaProdutos.addLista(janelaCadastro.getTextNome());
-                try {
-                    modelo.AtualizarDadosEmArquivo();
-                    janelaCadastro.dispose();
-                } catch (IOException io) {
-                    io.printStackTrace();
-                }
-             }
+      @Override
+      public void actionPerformed(ActionEvent e) {
+         if (arrayListProdutos == null || arrayListProdutos.isEmpty()) {
+            visao.AlertaLojaSemProdutos();
+         } else {
+            janelaEstoque = new JanelaEstoque(visao, true, listaProdutos.getLista());
+            janelaEstoque.addFecharJanelaEstoqueButtonListener(new FecharJanelaEstoqueButtonListener());
+            janelaEstoque.addVerificarEstoqueButtonListener(new VerificarEstoqueButtonListener());
+            janelaEstoque.addModificarEstoqueButtonListener(new ModificarEstoqueButtonListener());
+            janelaEstoque.SetarFocoNoItem(0);
+            janelaEstoque.setVisible(true);
          }
-    }
+      }
+   }
 
-    private class FecharJanelaCadastroButtonListener implements ActionListener {
+   private class AbrirJanelaCadastroButtonListener implements ActionListener {
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            janelaCadastro.dispose();
+      @Override
+      public void actionPerformed(ActionEvent e) {
+         janelaCadastro = new JanelaCadastro(visao, true);
+         janelaCadastro.addCadastrarProdutoButtonListener(new CadastrarProdutoButtonListener());
+         janelaCadastro.addFecharJanelaCadastroButtonListener(new FecharJanelaCadastroButtonListener());
+         janelaCadastro.setVisible(true);
+      }
+   }
 
-        }
-    }
+   private class AbrirJanelaVendaButtonListener implements ActionListener {
 
-    //////////////////////////// Aqui encontram-se todas as InnerClass com os ActionListener da classe JanelaEstoque
-    private class FecharJanelaEstoqueButtonListener implements ActionListener {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+         if (arrayListProdutos == null || arrayListProdutos.isEmpty()) {
+            visao.AlertaLojaSemProdutos();
+         } else {
+            janelaVenda = new JanelaVenda(visao, true, listaProdutos.getLista());
+            janelaVenda.addFecharJanelaVendaButtonListener(new FecharJanelaVendaButtonListener());
+            janelaVenda.addConfirmarVendaButtonListener(new ConfirmarVendaButtonListener());
+            janelaVenda.SetarFocoNoItem(0);
+            janelaVenda.setVisible(true);
+         }
+      }
+   }
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            janelaEstoque.dispose();
+   private class SairMenuItemListener implements ActionListener {
 
-        }
-    }
+      @Override
+      public void actionPerformed(ActionEvent e) {
+         visao.dispose();
+         System.exit(0);
+      }
+   }
 
-    private class VerificarEstoqueButtonListener implements ActionListener {
+   //////////////////////////// Aqui encontra-se todas as InnerClass com os ActionListener da classe JanelaCadastro
+   private class CadastrarProdutoButtonListener implements ActionListener {
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            int index = janelaEstoque.getItemSelecionado();
-            int qntAtual = modelo.getQntProduto(listaProdutos.getNome(index));
-            janelaEstoque.setQuantidadeAtualEstoque(qntAtual);
-        }
-    }
+      @Override
+      public void actionPerformed(ActionEvent e) {
 
-    private class ModificarEstoqueButtonListener implements ActionListener {
+         boolean ok = true;
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            
-            boolean ok = true;
-         
-            int index = janelaEstoque.getItemSelecionado();
-            String nome = listaProdutos.getNome(index);
-            
+         try {
+            if (janelaCadastro.getTextNome().isEmpty()) {
+               throw new IllegalArgumentException();
+            }
+
+         } catch (IllegalArgumentException iae) {
+            janelaCadastro.NomeDoProdutoEmBranco();
+            ok = false;
+         }
+
+         try {
+            if (janelaCadastro.getTextQuantidade().isEmpty()) {
+               throw new IllegalArgumentException();
+            } else {
+               Integer.parseInt(janelaCadastro.getTextQuantidade());
+            }
+         } catch (NumberFormatException nfe) {
+            janelaCadastro.QuantidadeValorInvalido();
+         } catch (IllegalArgumentException iae) {
+            janelaCadastro.QuantidadeProdutoEmBranco();
+            ok = false;
+         }
+
+         try {
+            if (janelaCadastro.getTextPreco().isEmpty()) {
+               throw new IllegalArgumentException();
+            } else {
+               Integer.parseInt(janelaCadastro.getTextPreco());
+            }
+         } catch (NumberFormatException nfe) {
+            janelaCadastro.PreçoValorInvalido();
+         } catch (IllegalArgumentException iae) {
+            janelaCadastro.PreçoProdutoEmBranco();
+            ok = false;
+         }
+
+         if (ok) {
+            modelo.adicionarProduto(janelaCadastro.getTextNome(), janelaCadastro.getTextDescricao(), Integer.parseInt(janelaCadastro.getTextQuantidade()), Integer.parseInt(janelaCadastro.getTextPreco()));
+            arrayListProdutos = modelo.getLista();
+            janelaCadastro.showCadastroEfetuado();
+            listaProdutos.addNomeDoProdutoNaListaModel(janelaCadastro.getTextNome());
             try {
-               if (janelaEstoque.getTextQuantidadeNovaEstoque().isEmpty())
-                    throw new IllegalArgumentException();
-               else
-                   Integer.parseInt(janelaEstoque.getTextQuantidadeNovaEstoque());
-            } catch (NumberFormatException nfe) {
-                janelaEstoque.NovaQuantidadeValorInvalido();
-                nfe.getMessage();
-            } catch (IllegalArgumentException iae) {
-                janelaEstoque.NovaQuantidadeProdutoEmBranco();
-                ok = false;
+               modelo.AtualizarDadosEmArquivo();
+               janelaCadastro.dispose();
+            } catch (IOException io) {
+               io.printStackTrace();
             }
-            
-            if (ok) {
-                int qntNova = janelaEstoque.getQuantidadeNovaEstoque();
-                modelo.setQntProduto(nome, qntNova);
-                try {
-                    modelo.AtualizarDadosEmArquivo();
-                } catch (IOException io) {
-                    io.printStackTrace();
-                }
+         }
+      }
+   }
+
+   private class FecharJanelaCadastroButtonListener implements ActionListener {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+         janelaCadastro.dispose();
+
+      }
+   }
+
+   //////////////////////////// Aqui encontram-se todas as InnerClass com os ActionListener da classe JanelaEstoque
+   private class FecharJanelaEstoqueButtonListener implements ActionListener {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+         janelaEstoque.dispose();
+
+      }
+   }
+
+   private class VerificarEstoqueButtonListener implements ActionListener {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+         int index = janelaEstoque.getItemSelecionado();
+         int qntAtual = modelo.getQuantidadeProduto(listaProdutos.getNome(index));
+         janelaEstoque.setQuantidadeAtualEstoque(qntAtual);
+      }
+   }
+
+   private class ModificarEstoqueButtonListener implements ActionListener {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+
+         boolean ok = true;
+
+         int index = janelaEstoque.getItemSelecionado();
+         String nome = listaProdutos.getNome(index);
+
+         try {
+            if (janelaEstoque.getTextQuantidadeNovaEstoque().isEmpty()) {
+               throw new IllegalArgumentException();
+            } else {
+               Integer.parseInt(janelaEstoque.getTextQuantidadeNovaEstoque());
             }
-        }
-    }
+         } catch (NumberFormatException nfe) {
+            janelaEstoque.NovaQuantidadeValorInvalido();
+            nfe.getMessage();
+         } catch (IllegalArgumentException iae) {
+            janelaEstoque.NovaQuantidadeProdutoEmBranco();
+            ok = false;
+         }
+
+         if (ok) {
+            int qntNova = janelaEstoque.getQuantidadeNovaEstoque();
+            modelo.setQuantidadeProduto(nome, qntNova);
+            try {
+               modelo.AtualizarDadosEmArquivo();
+            } catch (IOException io) {
+               io.printStackTrace();
+            }
+         }
+      }
+   }
 
 //////////////////////////// Aqui encontra-se todas as InnerClass com os ActionListener da classe JanelaVenda
-    private class ConfirmarVendaButtonListener implements ActionListener {
+   private class ConfirmarVendaButtonListener implements ActionListener {
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            int tamanho;
-            int index = janelaVenda.getItemSelecionado();
-            if (index >= 0) {
-                listaProdutos.removerItem(arrayListProdutos, index);
-                if (index ==0) {
-                    tamanho = listaProdutos.getTamanho();
-                    janelaVenda.SetarFocoNoItem(--tamanho);
-                }
-                else
-                    janelaVenda.SetarFocoNoItem(--index);
-                try {
-                    modelo.AtualizarDadosEmArquivo();
-                } catch (IOException io) {
-                    io.printStackTrace();
-                }
+      @Override
+      public void actionPerformed(ActionEvent e) {
+         int tamanho;
+         int index = janelaVenda.getItemSelecionado();
+         if (index >= 0) {
+            listaProdutos.removerItem(arrayListProdutos, index);
+            if (index == 0) {
+               tamanho = listaProdutos.getTamanho();
+               janelaVenda.SetarFocoNoItem(--tamanho);
+            } else {
+               janelaVenda.SetarFocoNoItem(--index);
             }
-            else
-                janelaVenda.AlertaLojaSemProdutos();
-                
-        }
-    }
+            try {
+               modelo.AtualizarDadosEmArquivo();
+            } catch (IOException io) {
+               io.printStackTrace();
+            }
+         } else {
+            janelaVenda.AlertaLojaSemProdutos();
+         }
+
+      }
+   }
 
    private class FecharJanelaVendaButtonListener implements ActionListener {
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            janelaVenda.dispose();
-        }
-    }
+      @Override
+      public void actionPerformed(ActionEvent e) {
+         janelaVenda.dispose();
+      }
+   }
 }
