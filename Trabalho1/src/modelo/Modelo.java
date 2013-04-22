@@ -2,19 +2,14 @@ package modelo;
 
 import java.io.EOFException;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
 public class Modelo {
     
     Produto produto;
-    //Estoque estoque;
     ArrayList<Produto> arrayListProdutos = new ArrayList<>();
     ArrayList<Produto> arrayListCarrinho = new ArrayList<>();
     File arquivo;
@@ -47,10 +42,6 @@ public class Modelo {
         }
     }
 
-    public void addCarrinho(String nome) {
-        arrayListCarrinho.add(this.getProduto(nome));
-    }
-
     public Produto getProduto(String nome) {
         Produto produto = null;
         for (int i = 0; i < arrayListProdutos.size(); i++) {
@@ -62,34 +53,10 @@ public class Modelo {
         return produto;
     }
 
-    public ArrayList<Produto> getCarrinho() {
-        return arrayListCarrinho;
-    }
-
-    public void concluirCompra() {
-        for (int i = 0; i < arrayListCarrinho.size(); i++) {
-            this.venderProduto(arrayListCarrinho.get(i));
-        }
-    }
-
-    public void limparCarrinho() {
-        arrayListCarrinho.clear();
-    }
-
     public void adicionarProduto(String nome, String descricao, int quantidade, int valor) {
 
-        // se o produto não existir adiciona-lo... {  
         produto = new Produto(nome, descricao, quantidade, valor);
-        //estoque.AlterarQuantidadeEmEstoque(produto,quantidade);
-        // }
-        // else {
-        //quantidadeEmEstoque = estoque.VerificarQuantidadeEmEstoque(produto);
-        //quantidadeEmEstoque += quantidade;
-        //estoque.AlterarQuantidadeEmEstoque(produto,quantidadeEmEstoque);
-        // }
-
         arrayListProdutos.add(produto);
-        //this.RegistrarEmArquivo(listaProdutos);
     }
 
     public void venderProduto(Produto produto) {

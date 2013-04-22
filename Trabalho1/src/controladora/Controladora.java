@@ -2,15 +2,9 @@ package controladora;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import modelo.Produto;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
-
 import modelo.Modelo;
 import visao.JanelaEstoque;
 import visao.JanelaRegistro;
@@ -158,7 +152,6 @@ public class Controladora {
         public void actionPerformed(ActionEvent e) {
             int index = janelaVenda.getItemSelecionado();
             String nome = listaProdutos.getNome(index);
-            modelo.addCarrinho(nome);
         }
     }
 
@@ -166,8 +159,6 @@ public class Controladora {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            modelo.limparCarrinho();
-            listaCarrinho.clear();
             janelaVenda.dispose();
         }
     }
